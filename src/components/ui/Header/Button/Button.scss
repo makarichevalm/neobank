@@ -1,0 +1,12 @@
+
+@import '../../../../styles/globals.scss';
+.blueButton{
+  background-color: #003CFF;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  @include ubuntu-bold;
+  font-size: 16px;
+  color: $button-text-color;
+
+}
