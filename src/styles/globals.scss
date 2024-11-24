@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
-#root {
+body {
   margin: 0 auto;
   text-align: center;
+  width: 80vw;
+  background-color: #F5F4FF;
 }
 @mixin ubuntu-light {
   font-family: "Ubuntu", serif;

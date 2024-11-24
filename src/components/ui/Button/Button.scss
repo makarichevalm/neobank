@@ -1,5 +1,5 @@
 
-@import '../../../../styles/globals.scss';
+@import '../../../styles/globals.scss';
 .blueButton{
   background-color: #003CFF;
   border: none;
@@ -8,5 +8,7 @@
   @include ubuntu-bold;
   font-size: 16px;
   color: $button-text-color;
-
+  &:hover{
+    background-color: #7796C0;
+  }
 }

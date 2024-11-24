@@ -1,12 +1,11 @@
-import Button from './components/ui/Header/Button/Button'
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router/Router'
 import './styles/globals.scss'
-
 function App() {
-
   return (
-    <>
-    <Button name="Online Bank"/>
-    </>
+    <BrowserRouter>
+    <Router/>
+    </BrowserRouter>
   )
 }
 
