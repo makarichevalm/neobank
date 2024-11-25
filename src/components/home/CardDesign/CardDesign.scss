@@ -1,0 +1,26 @@
+@import '@styles/globals.scss';
+.design{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80vw;
+  padding: 6vw 0;
+}
+.design_button{
+  h1{
+    @include ubuntu-bold;
+    color: #1C1C1E;
+    font-size: 48px;
+    margin-bottom: 36px;
+  }
+}
+.design_images{
+  display: grid;
+  grid-template:
+    "i i"
+    "i i";
+    gap: 10px;
+  figure{
+    margin: 0;
+  }
+}
