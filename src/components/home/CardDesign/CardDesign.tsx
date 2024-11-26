@@ -22,11 +22,7 @@ const CardDesign: FC = () => {
   return (
     <article className='design'>
       <section className='design_button'>
-        <h1>
-          Choose the design you like
-          <br /> and apply for card right
-          <br /> now
-        </h1>
+        <h1>Choose the design you like and apply for card right now</h1>
         <Button name='Choose the card' />
       </section>
       <section className='design_images'>
