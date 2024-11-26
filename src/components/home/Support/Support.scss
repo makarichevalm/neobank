@@ -1,0 +1,55 @@
+@import '@styles/globals.scss';
+.support{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span{
+    @include ubuntu-bold;
+    color:#EB801D;
+    font-size: 24px;
+  }
+  h3{
+    color: #1C1C1E;
+    font-size: 30px;
+  }
+}
+.support_h3_sub{
+  @include ubuntu-bold;
+  margin: 30px 0;
+}
+.support_h3_news{
+  @include ubuntu-medium;
+}
+.support_input{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 65px 0;
+  padding: 1vw 1.5vw;
+  background-color: #FFFFFF;
+  box-shadow: 0px 10px 20px 0px #363A781A;
+  border-radius: 1.5vw;
+  input{
+    border: none;
+    font-size: 20px;
+  }
+  input:focus{
+    outline: none;
+  }
+  button{
+    display: flex;
+    align-items: center;
+    @include ubuntu-bold;
+    font-size: 16px;
+    width: 160px;
+    border:none;
+    border-radius: 20px;
+    background-color: #686DF1;
+    color: $button-text-color;
+    img{
+      padding:0 10px;
+      margin-bottom: 3px;
+    }
+  }
+}
