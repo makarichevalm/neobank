@@ -1,0 +1,65 @@
+@import '@styles/globals.scss';
+$footer-link-color: #000000;
+$footer-text-color:#2D3748;
+footer{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left:0;
+  width: 100%;
+  background-color: #E7E7E7;
+}
+.footer{
+  width: 80vw;
+  padding: 4vw 0;
+}
+.footer_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .email{
+    @include ubuntu-medium;
+    font-size: 16px;
+    color: #2D3748;
+  }
+  .phone{
+    @include ubuntu-bold;
+    font-size: 30px;
+    color: $footer-link-color;
+  }
+}
+a {
+  text-decoration: none;
+}
+.footer_links_list{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0;
+  .footer_link{
+    padding: 0.5vw 0;
+    margin-right: 2vw;
+    *{
+      @include ubuntu-medium;
+      font-size: 16px;
+      color: $footer-link-color;
+    }
+  }
+}
+.footer_line{
+  background: white;
+  border: 2px solid #FFFFFFCF
+}
+.footer_text{
+  @include ubuntu-medium;
+  font-size: 16px;
+  color: $footer-text-color;
+}
+@media(max-width: 600px){
+  .footer_info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
