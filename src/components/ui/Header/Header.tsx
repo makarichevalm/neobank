@@ -1,16 +1,25 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './Header.scss'
 import Button from '../Button/Button'
+import menuIcon from '@assets/icons/menu.svg'
 
 const Header: FC = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false)
+
+  const handleMenu = () => {
+    setMenuOpen(!isMenuOpen)
+  }
   return (
     <header className='header'>
       <Link to='/' className='header_link'>
         NeoBank
       </Link>
       <nav className='header_nav'>
-        <ul>
+        <div className='header_nav-icon' onClick={handleMenu}>
+          <img src={menuIcon} alt='Menu' />
+        </div>
+        <ul className={`header_nav-item ${isMenuOpen && 'active'}`}>
           <li>
             <NavLink to='/card'>Credit card</NavLink>
           </li>
