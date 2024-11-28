@@ -1,8 +1,12 @@
 import { FC } from 'react'
 import './ExchangeRate.scss'
 import bank from '@assets/icons/bank.svg'
+import { TCurrencies } from '../../../api/getExchangeRate'
 
-const ExchangeRate: FC = () => {
+type TExchangeRate = {
+  currencies: TCurrencies[]
+}
+const ExchangeRate: FC<TExchangeRate> = ({ currencies }) => {
   return (
     <article className='converter'>
       <div className='converter_title'>
@@ -12,24 +16,18 @@ const ExchangeRate: FC = () => {
       <p>Currency</p>
       <div className='converter_currency'>
         <ul className='currency_list' id='currency_list'>
-          <li>
-            <span>USD: </span> 160.79
-          </li>
-          <li>
-            <span>USD: </span> 160.79
-          </li>
-          <li>
-            <span>USD: </span> 60.79
-          </li>
-          <li>
-            <span>USD: </span> 160.79
-          </li>
-          <li>
-            <span>USD: </span> 60.79
-          </li>
-          <li>
-            <span>USD: </span> 60.79
-          </li>
+          {currencies.length === 0 ? (
+            <p className='currency_list-error'>Exchange rates are not available. Try again later</p>
+          ) : (
+            currencies.map((cur) => {
+              return (
+                <li key={cur.id}>
+                  <span>{cur.name}:</span>
+                  {cur.value}
+                </li>
+              )
+            })
+          )}
         </ul>
         <img src={bank} alt='Bank' />
       </div>
