@@ -6,6 +6,7 @@ $features-text-color: #4F5665;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 0 $component-lr-padding;
 }
 .features_desc{
   h2{
@@ -33,17 +34,15 @@ $features-text-color: #4F5665;
 }
 .features_img{
     margin: 0;
+  img {
+    width: 450px;
+  }
 }
 @media (max-width: 1200px) {
  .features{
   display: flex;
   align-items: center;
   justify-content: center;
- }
- .features_img{
-  img{
-    width: 80vw;
-  }
  }
  .features_desc{
   display: flex;

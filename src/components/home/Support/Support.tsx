@@ -9,14 +9,14 @@ const Support: FC = () => {
       <span>Support</span>
       <h3 className='support_h3_sub'>Subscribe Newsletter & get</h3>
       <h3 className='support_h3_news'>Bank News</h3>
-      <div className='support_input'>
+      <form className='support_form'>
         <img src={email} alt='email' />
         <input type='email' placeholder='Your email' />
         <button>
           <img src={send} />
           Subscribe
         </button>
-      </div>
+      </form>
     </article>
   )
 }

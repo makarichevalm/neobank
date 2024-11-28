@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5vw 0;
+  padding: 0.5vw $component-lr-padding;
 }
 .header_link{
   text-decoration: none;

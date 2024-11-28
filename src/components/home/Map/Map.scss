@@ -4,7 +4,7 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  width: 100%;
+  padding: 0 $component-lr-padding;
   @include ubuntu-medium;
   color: #1C1C1C;
   h3{
@@ -19,5 +19,4 @@
       margin: 48px 0;
     }
   }
-
 }

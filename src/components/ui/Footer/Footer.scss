@@ -1,17 +1,15 @@
 @import '@styles/globals.scss';
 $footer-link-color: #000000;
 $footer-text-color:#2D3748;
-footer{
+.footer{
   display: flex;
   justify-content: center;
-  position: absolute;
+  flex-direction: column;
+  position: relative;
+  width: auto;
   left:0;
-  width: 100%;
   background-color: #E7E7E7;
-}
-.footer{
-  width: 80vw;
-  padding: 4vw 0;
+  padding: 4vw 5vw;
 }
 .footer_info{
   display: flex;

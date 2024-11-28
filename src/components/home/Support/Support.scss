@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 $component-lr-padding;
   span{
     @include ubuntu-bold;
     color:#EB801D;
@@ -21,7 +22,7 @@
 .support_h3_news{
   @include ubuntu-medium;
 }
-.support_input{
+.support_form{
   display: flex;
   align-items: center;
   gap: 10px;

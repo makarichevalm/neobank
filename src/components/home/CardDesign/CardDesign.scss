@@ -4,7 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 6vw 0;
+  padding: 6vw $component-lr-padding;
 }
 .design_button{
   max-width: 610px;
