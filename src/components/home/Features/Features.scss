@@ -1,4 +1,4 @@
-@import '@styles/globals.scss';
+@use '@styles/globals' as *;
 $features-text-color: #4F5665;
 .features{
   display: flex;
@@ -38,7 +38,7 @@ $features-text-color: #4F5665;
     width: 450px;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
  .features{
   display: flex;
   align-items: center;

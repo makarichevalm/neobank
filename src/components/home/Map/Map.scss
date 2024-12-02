@@ -1,4 +1,4 @@
-@import '@styles/globals.scss';
+@use '@styles/globals' as *;
 .map{
   display: flex;
   flex-direction: column;

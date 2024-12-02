@@ -1,5 +1,5 @@
 
-@import '@styles/globals.scss';
+@use '@styles/globals' as *;
 .blueButton{
   background-color: #003CFF;
   border: none;

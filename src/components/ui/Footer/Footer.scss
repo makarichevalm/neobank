@@ -1,4 +1,4 @@
-@import '@styles/globals.scss';
+@use '@styles/globals' as *;
 $footer-link-color: #000000;
 $footer-text-color:#2D3748;
 .footer{
