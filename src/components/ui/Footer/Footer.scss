@@ -9,7 +9,7 @@ $footer-text-color:#2D3748;
   width: auto;
   left:0;
   background-color: #E7E7E7;
-  padding: 4vw 5vw;
+  padding: 4vw $component-lr-padding;
 }
 .footer_info{
   display: flex;

@@ -1,10 +1,6 @@
 import axios from 'axios'
+import { TCurrencies } from '../types';
 
-export type TCurrencies = {
-  id:number
-  name: string
-  value: number
-}
 export const getExchangeRate = async (apiEndpoints: string[]): Promise<TCurrencies[]> => {
   try {
     const requests = apiEndpoints.map((endpoint) => axios.get(endpoint));
