@@ -30,7 +30,7 @@ const HomePage: FC = () => {
     }
   }
   const IsValidImg = (url: string | null): boolean => {
-    if (!url) return false
+    if (!url) return true
     const img = new Image()
     img.src = url
     return img.complete && img.naturalWidth !== 0

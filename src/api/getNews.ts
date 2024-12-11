@@ -4,7 +4,6 @@ const baseURL: string = `https://newsapi.org/v2/top-headlines?country=us&categor
 const getNews = async (url: string): Promise<any> => {
   try{
     const response = await axios.get(url);
-    console.log("done");
     return response.data.articles;
   }
   catch(error){

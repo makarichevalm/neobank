@@ -56,7 +56,7 @@ const News: FC<TNews> = ({ newsData }) => {
   }
   useEffect(() => {
     handleStep()
-  }, [])
+  }, [newsData])
   return (
     <section className='news'>
       <h3>Current news from the world of finance</h3>
