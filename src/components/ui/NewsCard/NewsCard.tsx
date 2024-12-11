@@ -8,9 +8,9 @@ const NewsCard: FC<TNewsItem> = ({ urlToImage, title, url, description }) => {
     <a className='newsCard' href={url} target='_blank'>
       <div>
         <img className='newsCard_img' src={urlToImage || defaultImage} />
-        <h4 className='newsCard_title'>{title || 'title of the news'}</h4>
+        <h4 className='newsCard_title'>{title || ''}</h4>
       </div>
-      <p className='newsCard_desc'>{description || 'no description'}</p>
+      <p className='newsCard_desc'>{description || ''}</p>
     </a>
   )
 }

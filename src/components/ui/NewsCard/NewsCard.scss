@@ -13,6 +13,8 @@
   box-sizing: border-box;
   &_img {
     width: 256px;
+    height: 120px;
+    object-fit: cover;
   }
   &_title{
     margin: 32px 0;
@@ -33,5 +35,6 @@
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
 }

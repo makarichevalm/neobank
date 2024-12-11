@@ -17,6 +17,7 @@ const HomePage: FC = () => {
   const minutes: number = 15
   const seconds: number = 60
   const milliseconds: number = 1000
+  const refreshTime: number = minutes * seconds * milliseconds
 
   const getNewsData = async () => {
     const data = await newsApi.getNews(newsApi.baseURL)
@@ -26,7 +27,6 @@ const HomePage: FC = () => {
         return IsValidImg(newsItem.urlToImage) && IsValidDesc(newsItem.description)
       })
       setNews(validData)
-      console.log(validData)
     }
   }
   const IsValidImg = (url: string | null): boolean => {
@@ -47,9 +47,10 @@ const HomePage: FC = () => {
   useEffect(() => {
     getCurrencies()
     getNewsData()
-    setInterval(() => {
+    const updateCurrencies = setInterval(() => {
       getCurrencies()
-    }, minutes * seconds * milliseconds)
+    }, refreshTime)
+    return () => clearInterval(updateCurrencies)
   }, [])
   return (
     <div>

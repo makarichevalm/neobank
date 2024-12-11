@@ -69,11 +69,9 @@ const News: FC<TNews> = ({ newsData }) => {
           ref={sliderRef}
           onScroll={() => scroll(sliderRef.current, prevBtnRef.current, nextBtnRef.current, step)}
         >
-          {typeof newsData === 'string' ? (
-            <p className='slider_content-message'>{newsData}</p>
-          ) : newsData.length === 0 ? (
-            <p className='slider_content-message'>Loading news...</p>
-          ) : (
+          {typeof newsData === 'string' && <p className='slider_content-message'>{newsData}</p>}
+          {newsData.length === 0 && <p className='slider_content-message'>Loading news...</p>}
+          {Array.isArray(newsData) &&
             newsData.map((newsInfo, index) => (
               <section className='cardContainer' key={index}>
                 <NewsCard
@@ -83,8 +81,7 @@ const News: FC<TNews> = ({ newsData }) => {
                   description={newsInfo.description}
                 />
               </section>
-            ))
-          )}
+            ))}
         </div>
       </article>
       {typeof newsData !== 'string' && (
