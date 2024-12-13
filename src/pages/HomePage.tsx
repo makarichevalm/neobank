@@ -20,14 +20,23 @@ const HomePage: FC = () => {
   const refreshTime: number = minutes * seconds * milliseconds
 
   const getNewsData = async () => {
-    const data = await newsApi.getNews(newsApi.baseURL)
-    if (typeof data === 'string') setNews(data)
-    else {
-      let validData = data.filter((newsItem: TNewsItem) => {
-        return IsValidImg(newsItem.urlToImage) && IsValidDesc(newsItem.description)
-      })
-      setNews(validData)
+    let newsData: TNewsItem[] = []
+    while (newsData.length < 20) {
+      const data = await newsApi.getNews(newsApi.baseURL)
+      if (typeof data === 'string') {
+        setNews(data)
+        break
+      } else {
+        let addData = filterValidData(data)
+        newsData = [...newsData, ...addData]
+      }
     }
+    setNews(newsData)
+  }
+  const filterValidData = (data: TNewsItem[]): TNewsItem[] => {
+    return data.filter((newsItem: TNewsItem) => {
+      return IsValidImg(newsItem.urlToImage) && IsValidDesc(newsItem.description)
+    })
   }
   const IsValidImg = (url: string | null): boolean => {
     if (!url) return true
