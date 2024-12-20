@@ -47,6 +47,9 @@
     color: #808080;
     margin-right: 20px;
   }
+  &-error{
+    grid-column: span 3;
+  }
 }
 .converter_courses{
   @include ubuntu-bold;
