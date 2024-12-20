@@ -46,6 +46,7 @@ const HomePage: FC = () => {
   }
   const IsValidDesc = (description: string | null): boolean => {
     if (!description) return true
+    if (description == '[Removed]') return false
     const DescRegex = /<[^>]+>/g
     return !DescRegex.test(description)
   }
