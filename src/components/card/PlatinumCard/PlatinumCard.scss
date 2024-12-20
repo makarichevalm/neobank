@@ -1,0 +1,87 @@
+@use '@styles/globals' as *;
+.platinum{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin : 20px $component-lr-padding;
+  padding: 48px 32px;
+  border-radius: 28px;
+  background: linear-gradient(180.8deg, rgba(203, 213, 224, 0.624) 34.33%, rgba(254, 235, 200, 0.56) 64.27%);
+  box-shadow: 0px 2px 4px 0px #00000033, 0px 0px 8px 0px #00000014;
+}
+.platinum_cond{
+  h1{
+    @include ubuntu-bold;
+    font-size: 48px;
+    color: #FFFFFF;
+    margin-bottom: 48px;
+  }
+  p{
+    @include ubuntu-medium;
+    font-size: 16px;
+    margin: 0;
+    color:#2D3748;
+    max-width: 515px;
+  }
+  &-list{
+    margin: 32px 0;
+    display: grid;
+    gap: 80px;
+    grid-template-areas: "i i i";
+    li{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #3D3D3D;
+      span:first-of-type{
+        @include ubuntu-bold;
+        font-size: 20px;
+      }
+      span:last-of-type{
+        @include ubuntu-medium;
+        font-size: 16px;
+      }
+    }
+  }
+}
+.platinum_img{
+  display: flex;
+  align-items: center;
+  &_card{
+    border-radius: 20px;
+    width: 380px;
+  }
+}
+@media (max-width: 1250px) {
+  .platinum {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .platinum_cond {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+@media (max-width: 720px) {
+  .platinum_cond-list{
+    display: grid;
+    text-align: center;
+    align-items: center;
+    gap: 30px;
+    li{
+      grid-column: span 2;
+    }
+    li:last-of-type{
+      grid-column: span 4;
+    }
+  }
+  .platinum_img_card{
+    width: 300px;
+  }
+  
+}
