@@ -1,7 +1,7 @@
 import { FC, useRef, useState, useEffect } from 'react'
 import './News.scss'
-import NewsCard from '../../ui/NewsCard/NewsCard'
-import { TNewsItem } from '../../../types'
+import NewsCard from '@components/ui/NewsCard/NewsCard'
+import { TNewsItem } from '@/types'
 
 type TNews = {
   newsData: TNewsItem[] | string

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import './NewsCard.scss'
-import { TNewsItem } from '../../../types/index.ts'
+import { TNewsItem } from '@/types'
 import defaultImage from '@assets/images/business.jpg'
 
 const NewsCard: FC<TNewsItem> = ({ urlToImage, title, url, description }) => {

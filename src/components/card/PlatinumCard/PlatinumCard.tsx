@@ -1,8 +1,7 @@
 import { FC } from 'react'
 import './PlatinumCard.scss'
 import card from '@assets/images/cardImage1.png'
-import Button from '../../ui/Button/Button'
-
+import Button from '@components/ui/Button/Button'
 const PlatinumCard: FC = () => {
   return (
     <article className='platinum'>
@@ -12,16 +11,16 @@ const PlatinumCard: FC = () => {
           Our best credit card. Suitable for everyday spending and shopping. Cash withdrawals and transfers without
           commission and interest.
         </p>
-        <ul className='platinum_cond-list'>
-          <li>
+        <ul className='platinum_cond_list'>
+          <li className='platinum_cond_list-item' data-tooltip='When repaying the full debt up to 160 days.'>
             <span>Up to 160 days</span>
             <span>No percent</span>
           </li>
-          <li>
+          <li className='platinum_cond_list-item' data-tooltip='Over the limit willaccrue percent'>
             <span>Up to 600 000 ₽</span>
             <span>Credit limit</span>
           </li>
-          <li>
+          <li className='platinum_cond_list-item' data-tooltip='Promotion valid until December 31, 2022.'>
             <span>0 ₽</span>
             <span>Card service is free</span>
           </li>

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import './CardDesign.scss'
-import Button from '../../ui/Button/Button'
+import Button from '@components/ui/Button/Button'
 import image1 from '@assets/images/cardImage1.png'
 import image2 from '@assets/images/cardImage2.png'
 import image3 from '@assets/images/cardImage3.png'

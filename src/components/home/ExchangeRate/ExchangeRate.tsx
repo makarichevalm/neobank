@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import './ExchangeRate.scss'
 import bank from '@assets/icons/bank.svg'
-import { TCurrencies } from '../../../types'
+import { TCurrencies } from '@/types'
 
 type TExchangeRate = {
   currencies: TCurrencies[]

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Header from '../components/ui/Header/Header'
+import Header from '@components/ui/Header/Header'
 
 const NotFoundPage: FC = () => {
   return (

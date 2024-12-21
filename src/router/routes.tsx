@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import HomePage from '../pages/HomePage'
-import CardPage from '../pages/CardPage'
-import NotFoundPage from '../pages/NotFoundPage'
+import HomePage from '@pages/HomePage'
+import CardPage from '@pages/CardPage'
+import NotFoundPage from '@pages/NotFoundPage'
 
 enum RouteNames {
   HOME = '/',
