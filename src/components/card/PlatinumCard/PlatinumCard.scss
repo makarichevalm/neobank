@@ -29,7 +29,7 @@
     display: grid;
     gap: 80px;
     grid-template-areas: "i i i";
-    li{
+    div{
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -52,29 +52,6 @@
     transform: rotate(10deg);
     border-radius: 20px;
     width: 380px;
-  }
-}
-.platinum_cond_list-item{
-  position: relative;
-  cursor: pointer;
-  &::after{
-    content: attr(data-tooltip);
-    @include ubuntu-medium;
-    font-size: 12px;
-    position: absolute;
-    text-align: start;
-    width: 170px;
-    background-color: #3D3D3D;
-    color: #FFFFFF;
-    padding: 8px;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 1s;
-  }
-  &:hover::after{
-    opacity: 1;
   }
 }
 @media (max-width: 1250px) {
@@ -101,10 +78,10 @@
     text-align: center;
     align-items: center;
     gap: 30px;
-    li{
+    div{
       grid-column: span 2;
     }
-    li:last-of-type{
+    div:last-of-type{
       grid-column: span 4;
     }
   }
