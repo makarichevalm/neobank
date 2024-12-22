@@ -32,7 +32,7 @@ const PlatinumCard: FC = () => {
             </div>
           </Tooltip>
         </div>
-        <Button name='Apply for card' />
+        <Button name='Apply for card' style='compBtn' />
       </section>
       <section className='platinum_img'>
         <figure>

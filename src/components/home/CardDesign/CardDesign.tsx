@@ -23,7 +23,7 @@ const CardDesign: FC = () => {
     <article className='design'>
       <section className='design_button'>
         <h1>Choose the design you like and apply for card right now</h1>
-        <Button name='Choose the card' />
+        <Button name='Choose the card' style='mainBtn' />
       </section>
       <section className='design_images'>
         {images.map((img) => {

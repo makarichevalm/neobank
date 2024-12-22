@@ -1,6 +1,6 @@
 
 @use '@styles/globals' as *;
-.blueButton{
+.mainBtn{
   background-color: #003CFF;
   border: none;
   border-radius: 16px;
@@ -9,6 +9,18 @@
   font-size: 16px;
   color: $button-text-color;
   &:hover{
+    background-color: #7796C0;
+  }
+}
+.compBtn {
+  background-color: #003CFF;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  @include ubuntu-bold;
+  font-size: 16px;
+  color: $button-text-color;
+  &:hover {
     background-color: #7796C0;
   }
 }

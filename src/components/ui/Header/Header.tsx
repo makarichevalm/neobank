@@ -34,7 +34,7 @@ const Header: FC = () => {
           </li>
         </ul>
       </nav>
-      <Button name='Online Bank' />
+      <Button name='Online Bank' style='mainBtn' />
     </header>
   )
 }
