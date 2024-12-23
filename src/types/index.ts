@@ -9,3 +9,7 @@ export type TCurrencies = {
   name: string
   value: number
 }
+export type TTab = {
+  name: string
+  content: React.ReactElement | string
+}

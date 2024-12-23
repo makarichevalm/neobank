@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import './GetCard.scss'
+import Divider from '@/components/ui/Divider/Divider'
 const GetCard: FC = () => {
   return (
     <article className='getCard'>
@@ -10,7 +11,7 @@ const GetCard: FC = () => {
             <div className='getCard_step_num-circle'>
               <span>1</span>
             </div>
-            <div className='line'></div>
+            <Divider style='cardDivider' />
           </div>
           <div className='getCard_step_desc'>Fill out an online application - you do not need to visit the bank</div>
         </section>
@@ -19,7 +20,7 @@ const GetCard: FC = () => {
             <div className='getCard_step_num-circle'>
               <span>2</span>
             </div>
-            <div className='line'></div>
+            <Divider style='cardDivider' />
           </div>
           <div className='getCard_step_desc'>
             Find out the bank's decision immediately after filling out the application
@@ -30,7 +31,7 @@ const GetCard: FC = () => {
             <div className='getCard_step_num-circle'>
               <span>3</span>
             </div>
-            <div className='line'></div>
+            <Divider style='cardDivider' />
           </div>
           <div className='getCard_step_desc'>
             The bank will deliver the card free of charge, wherever convenient, to your city
