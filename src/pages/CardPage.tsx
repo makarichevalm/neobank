@@ -5,10 +5,11 @@ import PlatinumCard from '@components/card/PlatinumCard/PlatinumCard'
 import GetCard from '@/components/card/GetCard/GetCard'
 import TabList from '@/components/card/TabList/TabList'
 import AboutCard from '@/components/card/Tabs/AboutCard/AboutCard'
+import Rates from '@/components/card/Tabs/Rates/Rates'
 
 const tabItems = [
   { name: 'About card', content: <AboutCard /> },
-  { name: 'Rates and conditions', content: 'hi line2' },
+  { name: 'Rates and conditions', content: <Rates /> },
   { name: 'Cashback', content: 'hi line3' },
   { name: 'FAQ', content: 'hi line4' },
 ]

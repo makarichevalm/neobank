@@ -5,6 +5,7 @@ import bagIcon from '@assets/icons/Bag_duotone.svg'
 import calendarIcon from '@assets/icons/Calendar_duotone.svg'
 import clockIcon from '@assets/icons/Clock_duotone.svg'
 import creditIcon from '@assets/icons/Credit card_duotone.svg'
+
 const cardInfo = [
   {
     icon: moneyIcon,
