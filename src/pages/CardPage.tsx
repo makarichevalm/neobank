@@ -4,9 +4,10 @@ import Footer from '@components/ui/Footer/Footer'
 import PlatinumCard from '@components/card/PlatinumCard/PlatinumCard'
 import GetCard from '@/components/card/GetCard/GetCard'
 import TabList from '@/components/card/TabList/TabList'
+import AboutCard from '@/components/card/Tabs/AboutCard/AboutCard'
 
 const tabItems = [
-  { name: 'About card', content: 'hi linee' },
+  { name: 'About card', content: <AboutCard /> },
   { name: 'Rates and conditions', content: 'hi line2' },
   { name: 'Cashback', content: 'hi line3' },
   { name: 'FAQ', content: 'hi line4' },
