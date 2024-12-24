@@ -11,5 +11,10 @@ export type TCurrencies = {
 }
 export type TTab = {
   name: string
-  content: React.ReactElement | string
+  content: React.ReactElement
+}
+export type TAccordionItem = {
+  index: number
+  title: string
+  content: string
 }

@@ -7,12 +7,13 @@ import TabList from '@/components/card/TabList/TabList'
 import AboutCard from '@/components/card/Tabs/AboutCard/AboutCard'
 import Rates from '@/components/card/Tabs/Rates/Rates'
 import Cashback from '@/components/card/Tabs/Cashback/Cashback'
+import Faq from '@/components/card/Tabs/Faq/Faq'
 
 const tabItems = [
   { name: 'About card', content: <AboutCard /> },
   { name: 'Rates and conditions', content: <Rates /> },
   { name: 'Cashback', content: <Cashback /> },
-  { name: 'FAQ', content: 'hi line4' },
+  { name: 'FAQ', content: <Faq /> },
 ]
 const CardPage: FC = () => {
   return (
