@@ -6,7 +6,12 @@ import calendarIcon from '@assets/icons/Calendar_duotone.svg'
 import clockIcon from '@assets/icons/Clock_duotone.svg'
 import creditIcon from '@assets/icons/Credit card_duotone.svg'
 
-const cardInfo = [
+type TAboutCard = {
+  icon: string
+  title: string
+  text: string
+}
+const cardInfo: Array<TAboutCard> = [
   {
     icon: moneyIcon,
     title: 'Up to 50 000 ₽',

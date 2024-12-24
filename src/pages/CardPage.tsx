@@ -6,11 +6,12 @@ import GetCard from '@/components/card/GetCard/GetCard'
 import TabList from '@/components/card/TabList/TabList'
 import AboutCard from '@/components/card/Tabs/AboutCard/AboutCard'
 import Rates from '@/components/card/Tabs/Rates/Rates'
+import Cashback from '@/components/card/Tabs/Cashback/Cashback'
 
 const tabItems = [
   { name: 'About card', content: <AboutCard /> },
   { name: 'Rates and conditions', content: <Rates /> },
-  { name: 'Cashback', content: 'hi line3' },
+  { name: 'Cashback', content: <Cashback /> },
   { name: 'FAQ', content: 'hi line4' },
 ]
 const CardPage: FC = () => {
