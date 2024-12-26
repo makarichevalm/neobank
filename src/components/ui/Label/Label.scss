@@ -1,0 +1,8 @@
+@use '@styles/globals' as *;
+.label{
+  display: flex;
+  flex-direction: column;
+  @include ubuntu-medium;
+  font-size: 16px;
+  margin-bottom: 8px;
+}

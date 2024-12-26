@@ -3,7 +3,10 @@ import './PlatinumCard.scss'
 import card from '@assets/images/cardImage1.png'
 import Button from '@components/ui/Button/Button'
 import Tooltip from '@/components/ui/Tooltip/Tooltip'
-const PlatinumCard: FC = () => {
+type TPlatinumCard = {
+  onClick: () => void
+}
+const PlatinumCard: FC<TPlatinumCard> = ({ onClick }) => {
   return (
     <article className='platinum'>
       <section className='platinum_cond'>
@@ -32,7 +35,7 @@ const PlatinumCard: FC = () => {
             </div>
           </Tooltip>
         </div>
-        <Button name='Apply for card' style='compBtn' />
+        <Button name='Apply for card' style='compBtn' onClick={onClick} />
       </section>
       <section className='platinum_img'>
         <figure>

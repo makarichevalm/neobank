@@ -1,0 +1,18 @@
+@use '@styles/globals' as *;
+.formInput{
+  width: 100%;
+  background-color: #F9F5E3;
+  border: 1px solid #80808033;
+  border-radius: 6px;
+  @include ubuntu-regular;
+  font-size: 14px;
+  padding: 13px 16px;
+  box-sizing: border-box;
+
+}
+.formInput-error{
+  outline: 2px solid #FF5631;
+}
+input:focus{
+  outline: 2px solid #5B35D5;
+}
