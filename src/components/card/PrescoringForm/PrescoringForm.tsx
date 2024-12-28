@@ -1,26 +1,30 @@
 import { FC } from 'react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import './PrescoringForm.scss'
 import Button from '@/components/ui/Button/Button'
 import Input from '@/components/ui/Input/Input'
 import AmountInput from '@/components/ui/AmountInput/AmountInput'
 import Divider from '@/components/ui/Divider/Divider'
-import Label from '@/components/ui/Label/Label'
+import { IFormValues } from '@/types'
+import FormHeader from '@/components/ui/FormHeader/FormHeader'
+import Select from '@/components/ui/Select/Select'
 
 const PrescoringForm: FC = () => {
-  const { handleSubmit } = useForm()
-  const onSubmit = (data: any) => {
+  const { handleSubmit, register } = useForm<IFormValues>()
+  const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data)
   }
-
+  const selectOptions = [
+    { value: 6, name: '6 month' },
+    { value: 12, name: '12 month' },
+    { value: 18, name: '18 month' },
+    { value: 24, name: '24 month' },
+  ]
   return (
     <article className='prescoring'>
       <section className='prescoring_header'>
         <div className='prescoring_header_block'>
-          <div className='prescoring_header_block_text'>
-            <h3 className='prescoring_header_block_text-h3'>Customize your card</h3>
-            <span className='prescoring_header_block_text-span'>Step 1 of 5</span>
-          </div>
+          <FormHeader value='Customize your card' step={1} />
           <AmountInput />
         </div>
         <div className='prescoring_header_divider'>
@@ -34,31 +38,61 @@ const PrescoringForm: FC = () => {
       </section>
       <section className='prescoring_form'>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='prescoring_form-title'>Contact Information</div>
           <div className='prescoring_form_data'>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
-            <Label value='Select amount'>
-              <Input />
-            </Label>
+            <Input
+              id='lastName'
+              label='Your last name'
+              {...register('lastName')}
+              placeholder='For Example Doe'
+              required
+            />
+            <Input
+              id='firstName'
+              label='Your first name'
+              {...register('firstName')}
+              placeholder='For Example Jhon'
+              required
+            />
+            <Input
+              id='middleName'
+              label='Your patronymic'
+              {...register('middleName')}
+              placeholder='For Example Victorovich'
+            />
+            <Select id='term' name='term' label='Select term' options={selectOptions} register={register} required />
+            <Input
+              id='email'
+              type='email'
+              label='Your email'
+              {...register('email')}
+              placeholder='test@gmail.com'
+              required
+            />
+            <Input
+              id='birthdate'
+              label='Your date of birth'
+              {...register('birthdate')}
+              placeholder='Select Date and Time'
+              required
+            />
+            <Input
+              id='passportSeries'
+              type='number'
+              label='Your passport series'
+              {...register('passportSeries')}
+              placeholder='0000'
+              required
+            />
+            <Input
+              id='passportNumber'
+              type='number'
+              label='Your passport number'
+              {...register('passportNumber')}
+              placeholder='000000'
+              required
+            />
+            {/*<Input register={register} name='lastName' label='Your last name' placeholder='For Example Doe' required />*/}
           </div>
           <div className='prescoring_form_btn'>
             <Button name='Continue' style='compBtn' type='submit' />

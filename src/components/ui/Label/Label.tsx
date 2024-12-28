@@ -2,13 +2,15 @@ import { FC } from 'react'
 import './Label.scss'
 
 type TLabel = {
+  style: string
+  htmlFor?: string
   value: string
-  children: JSX.Element
+  children: React.ReactNode
 }
-const Label: FC<TLabel> = ({ value, children }) => {
+const Label: FC<TLabel> = ({ style, htmlFor, value, children }) => {
   return (
-    <label>
-      <span className='label'>{value}</span>
+    <label htmlFor={htmlFor}>
+      <span className={style}>{value}</span>
       {children}
     </label>
   )

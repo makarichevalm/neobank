@@ -1,8 +1,22 @@
 @use '@styles/globals' as *;
 .label{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   @include ubuntu-medium;
   font-size: 16px;
+  color: #1A202C;
   margin-bottom: 8px;
+}
+.label_required{
+  display: flex;
+  flex-direction: row;
+  @include ubuntu-medium;
+  font-size: 16px;
+  color: #1A202C;
+  margin-bottom: 8px;
+  &:after {
+    margin-left: 5px;
+      content: "*";
+      color: #FF0000;;
+    }
 }

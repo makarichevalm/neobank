@@ -1,1 +1,14 @@
 @use '@styles/globals' as *;
+.select {
+  width: 100%;
+  background-color: #F9F5E3;
+  border: 1px solid #80808033;
+  border-radius: 6px;
+  @include ubuntu-regular;
+  font-size: 14px;
+  padding: 13px 16px;
+  box-sizing: border-box;
+  appearance: none;
+  background: url(@assets/icons/itemClose.svg) no-repeat right;
+  background-position-x: calc(100% - 16px);
+}
