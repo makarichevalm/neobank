@@ -1,13 +1,15 @@
 import { FC } from 'react'
 import './AmountInput.scss'
-import Input from '../Input/Input'
 import Label from '../Label/Label'
-
-const AmountInput: FC = () => {
+type TAmount = {
+  register: any
+  name: string
+}
+const AmountInput: FC<TAmount> = ({ name, register }) => {
   return (
     <div className='amount'>
-      <Label value='Select amount'>
-        <Input />
+      <Label style='label' htmlFor='amount' value='Select amount'>
+        <input className='formInput' type='number' min='15000' max='600000' defaultValue={15000} {...register(name)} />
       </Label>
     </div>
   )

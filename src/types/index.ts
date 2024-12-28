@@ -18,3 +18,14 @@ export type TAccordionItem = {
   title: string
   content: string
 }
+export interface IFormValues {
+  amount: number,
+  term: number,
+  firstName: string,
+  lastName: string,
+  middleName: string | null,
+  email: string,
+  birthdate: string | Date,
+  passportSeries: string,
+  passportNumber: string
+}

@@ -10,7 +10,7 @@ import FormHeader from '@/components/ui/FormHeader/FormHeader'
 import Select from '@/components/ui/Select/Select'
 
 const PrescoringForm: FC = () => {
-  const { handleSubmit, register } = useForm<IFormValues>()
+  const { handleSubmit, register, watch } = useForm<IFormValues>()
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data)
   }
@@ -25,14 +25,14 @@ const PrescoringForm: FC = () => {
       <section className='prescoring_header'>
         <div className='prescoring_header_block'>
           <FormHeader value='Customize your card' step={1} />
-          <AmountInput />
+          <AmountInput name='amount' register={register} />
         </div>
         <div className='prescoring_header_divider'>
           <Divider style='formDivider-dashed' />
         </div>
         <div className='prescoring_header_amount'>
           <p className='prescoring_header_amount-text'>You have chosen the amount</p>
-          <p className='prescoring_header_amount-value'>150 000 ₽</p>
+          <p className='prescoring_header_amount-value'>{watch('amount', 15000)} ₽</p>
           <Divider style='formDivider-solid' />
         </div>
       </section>
@@ -92,7 +92,6 @@ const PrescoringForm: FC = () => {
               placeholder='000000'
               required
             />
-            {/*<Input register={register} name='lastName' label='Your last name' placeholder='For Example Doe' required />*/}
           </div>
           <div className='prescoring_form_btn'>
             <Button name='Continue' style='compBtn' type='submit' />
