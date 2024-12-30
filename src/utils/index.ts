@@ -1,5 +1,4 @@
 const validateFormDate = (birth: string) => {
- 
   let today = new Date()
   let birthArr = birth.split('-')
   let birthDate = new Date(Number(birthArr[0]), Number(birthArr[1])-1, Number(birthArr[2]))
