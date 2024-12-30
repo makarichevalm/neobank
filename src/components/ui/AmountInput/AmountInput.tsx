@@ -1,18 +1,29 @@
-import { FC } from 'react'
+import { FC, InputHTMLAttributes, forwardRef } from 'react'
 import './AmountInput.scss'
 import Label from '../Label/Label'
-type TAmount = {
-  register: any
-  name: string
+import successIcon from '@assets/icons/Check_fill.svg'
+import errorIcon from '@assets/icons/Error_fill.svg'
+import { FieldError } from 'react-hook-form'
+
+type TAmount = InputHTMLAttributes<HTMLInputElement> & {
+  label: string
+  isRequired?: boolean
+  isSubmitted?: boolean
+  error?: FieldError | undefined
 }
-const AmountInput: FC<TAmount> = ({ name, register }) => {
-  return (
-    <div className='amount'>
-      <Label style='label' htmlFor='amount' value='Select amount'>
-        <input className='formInput' type='number' min='15000' max='600000' defaultValue={15000} {...register(name)} />
-      </Label>
-    </div>
-  )
-}
+const AmountInput: FC<TAmount> = forwardRef<HTMLInputElement, TAmount>(
+  ({ label, isRequired, isSubmitted, error, ...inputProps }, ref) => {
+    return (
+      <div className='amountInput'>
+        <Label isRequired={isRequired} htmlFor={inputProps.name} value={label}>
+          <input className={error ? 'formInput inputError' : 'formInput'} ref={ref} {...inputProps} />
+          {isSubmitted && !error && <img className='icon_success' src={successIcon} />}
+          {error && <img className='icon_error' src={errorIcon} />}
+          {error && <div className='error_message'>{error?.message}</div>}
+        </Label>
+      </div>
+    )
+  },
+)
 
 export default AmountInput

@@ -10,14 +10,14 @@ type TSelectProps = {
   id: string
   name: string
   label: string
-  required: boolean
+  isRequired?: boolean
   options: TSelectOption[]
   register: any
 }
 const Select: FC<TSelectProps> = forwardRef<HTMLSelectElement, TSelectProps>(
-  ({ id, name, label, required, options, register }, ref) => {
+  ({ id, name, label, isRequired, options, register }, ref) => {
     return (
-      <Label style={required ? 'label_required' : 'label'} htmlFor={name} value={label}>
+      <Label isRequired={isRequired} htmlFor={name} value={label}>
         <select className='select' id={id} ref={ref} {...register(name)}>
           {options.map((option, index) => (
             <option value={option.value} key={index}>
