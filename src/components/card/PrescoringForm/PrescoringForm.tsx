@@ -1,5 +1,5 @@
-import { FC } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FC, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import './PrescoringForm.scss'
 import Button from '@/components/ui/Button/Button'
 import Input from '@/components/ui/Input/Input'
@@ -9,8 +9,11 @@ import { IFormValues } from '@/types'
 import FormHeader from '@/components/ui/FormHeader/FormHeader'
 import Select from '@/components/ui/Select/Select'
 import { utils } from '@/utils'
+import { api } from '@/api/api'
+import Loader from '@/components/ui/Loader/Loader'
 
 const PrescoringForm: FC = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const {
     handleSubmit,
     register,
@@ -22,8 +25,9 @@ const PrescoringForm: FC = () => {
       term: 6,
     },
   })
-  const onSubmit: SubmitHandler<IFormValues> = (data) => {
-    const correctData = {
+  const onSubmit = async (data: IFormValues) => {
+    setIsLoading(true)
+    const correctData: IFormValues = {
       amount: data.amount,
       lastName: data.lastName.trim(),
       firstName: data.firstName.trim(),
@@ -34,7 +38,11 @@ const PrescoringForm: FC = () => {
       passportSeries: data.passportSeries,
       passportNumber: data.passportNumber,
     }
-    console.log(correctData)
+    try {
+      await api.prescoringApplication(correctData)
+    } catch (error) {
+      console.log(error)
+    }
   }
   const selectOptions = [
     { value: 6, name: '6 month' },
@@ -42,7 +50,6 @@ const PrescoringForm: FC = () => {
     { value: 18, name: '18 month' },
     { value: 24, name: '24 month' },
   ]
-  console.log(isSubmitted)
   return (
     <form className='prescoring' onSubmit={handleSubmit(onSubmit)}>
       <section className='prescoring_header'>
@@ -163,7 +170,7 @@ const PrescoringForm: FC = () => {
           />
         </div>
         <div className='prescoring_form_btn'>
-          <Button name='Continue' style='compBtn' type='submit' />
+          {isLoading ? <Loader /> : <Button name='Continue' style='compBtn' type='submit' />}
         </div>
       </section>
     </form>
