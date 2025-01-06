@@ -1,0 +1,14 @@
+@use '@styles/globals' as *;
+.amountInput{
+  position: relative;
+  border: 1px solid #5B35D5;
+  border-radius: 10px;
+  padding: 24px;
+  margin: 32px 0;
+}
+.icon_error,
+.icon_success {
+  position: absolute;
+  top: 61px;
+  right: 38px;
+}

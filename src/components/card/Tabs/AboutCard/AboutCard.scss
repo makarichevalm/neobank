@@ -1,0 +1,33 @@
+@use '@styles/globals' as *;
+.aboutCard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 50px 0;
+}
+.aboutCard_item{
+  padding: 32px;
+  width: 400px;
+  border-radius: 28px;
+  box-shadow: 0px 2px 4px 0px #00000033, 0px 0px 8px 0px #00000014;
+  box-sizing: border-box;
+  flex-grow: 1;
+  &-title{
+    @include ubuntu-bold;
+    font-size: 30px;
+    margin-top: 24px;
+  }
+  &-text{
+    @include ubuntu-medium;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+}
+.aboutCard_item:nth-child(even) {
+  background-color: #7F92ACB2;
+}
+.aboutCard_item:nth-child(odd) {
+  background-color: #EAECEE;
+}

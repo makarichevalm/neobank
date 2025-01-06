@@ -1,0 +1,28 @@
+@use '@styles/globals' as *;
+.accordionItem{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #E2E8F0;
+  padding: 32px;
+}
+.accordionItem_btn{
+  display: flex;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0;
+  &-title{
+    @include ubuntu-medium;
+    font-size: 16px;
+    color: #1C1C1E;
+  }
+  &-desc{
+    margin-top: 55px;
+    @include ubuntu-regular;
+    font-size: 16px;
+    color: #7B7454;
+  }
+}

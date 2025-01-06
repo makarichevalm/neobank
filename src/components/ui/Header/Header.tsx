@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './Header.scss'
-import Button from '../Button/Button'
+import Button from '@components/ui/Button/Button'
 import menuIcon from '@assets/icons/menu.svg'
 
 const Header: FC = () => {
@@ -34,7 +34,7 @@ const Header: FC = () => {
           </li>
         </ul>
       </nav>
-      <Button name='Online Bank' />
+      <Button name='Online Bank' style='mainBtn' />
     </header>
   )
 }

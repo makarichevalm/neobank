@@ -14,7 +14,6 @@ $footer-text-color:#2D3748;
 .footer_info{
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   .email{
     @include ubuntu-medium;
@@ -25,6 +24,9 @@ $footer-text-color:#2D3748;
     @include ubuntu-bold;
     font-size: 30px;
     color: $footer-link-color;
+  }
+  &-logo {
+    margin-top: 12px;
   }
 }
 a {
@@ -44,10 +46,6 @@ a {
       color: $footer-link-color;
     }
   }
-}
-.footer_line{
-  background: white;
-  border: 2px solid #FFFFFFCF
 }
 .footer_text{
   @include ubuntu-medium;

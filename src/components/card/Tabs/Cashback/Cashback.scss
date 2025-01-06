@@ -1,0 +1,37 @@
+@use '@styles/globals' as *;
+.cashback{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 40px;
+  margin-top: 32px;
+}
+.cashback_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px;
+  border-radius: 28px;
+  box-shadow: 0px 2px 4px 0px #00000033, 0px 0px 8px 0px #00000014;
+  box-sizing: border-box;
+  p{
+    margin: 0;
+  }
+  p:first-of-type{
+    @include ubuntu-medium;
+    margin-bottom: 22px;
+    font-size: 16px;
+    color: #434343E5;
+  }
+  p:last-of-type{
+    @include ubuntu-bold;
+    font-size: 36px;
+  }
+}
+.cashback_item:nth-child(even) {
+  background-color: #88B3B899;
+}
+
+.cashback_item:nth-child(odd) {
+  background-color: #EAECEE;
+}

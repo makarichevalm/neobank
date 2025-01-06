@@ -9,3 +9,23 @@ export type TCurrencies = {
   name: string
   value: number
 }
+export type TTab = {
+  name: string
+  content: React.ReactElement
+}
+export type TAccordionItem = {
+  index: number
+  title: string
+  content: string
+}
+export interface IFormValues {
+  amount: number,
+  term: number,
+  firstName: string,
+  lastName: string,
+  middleName: string | null,
+  email: string,
+  birthdate: string | Date,
+  passportSeries: string,
+  passportNumber: string
+}

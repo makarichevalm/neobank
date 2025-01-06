@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.scss'
 import logo from '@assets/images/logo.png'
+import Divider from '../Divider/Divider'
 
 type TLinks = {
   id: number
@@ -24,7 +25,7 @@ const Footer: FC = () => {
   return (
     <footer className='footer'>
       <div className='footer_info'>
-        <a href='https://www.neoflex.ru/' target='_blank'>
+        <a className='footer_info-logo' href='https://www.neoflex.ru/' target='_blank'>
           <img src={logo} alt='Neoflex' />
         </a>
         <address>
@@ -51,7 +52,7 @@ const Footer: FC = () => {
           })}
         </ul>
       </nav>
-      <hr className='footer_line' />
+      <Divider style='footerDivider' />
       <p className='footer_text'>
         We use cookies to personalize our services and improve the user experience of our website. Cookies are small
         files containing information about previous visits to a website. If you do not want to use cookies, please

@@ -1,12 +1,17 @@
-import {FC} from 'react'
+import { FC } from 'react'
 import './Button.scss'
 
 type TButton = {
-  name:string
+  name: string
+  style: string
+  type?: 'button' | 'submit' | 'reset'
+  onClick?: () => void
 }
-const Button:FC<TButton> = ({name}) => {
+const Button: FC<TButton> = ({ name, style, type, onClick }) => {
   return (
-   <button className='blueButton'>{name}</button>
+    <button className={style} type={type || 'button'} onClick={onClick}>
+      {name}
+    </button>
   )
 }
 

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import './CardDesign.scss'
-import Button from '../../ui/Button/Button'
+import Button from '@components/ui/Button/Button'
 import image1 from '@assets/images/cardImage1.png'
 import image2 from '@assets/images/cardImage2.png'
 import image3 from '@assets/images/cardImage3.png'
@@ -23,7 +23,7 @@ const CardDesign: FC = () => {
     <article className='design'>
       <section className='design_button'>
         <h1>Choose the design you like and apply for card right now</h1>
-        <Button name='Choose the card' />
+        <Button name='Choose the card' style='mainBtn' />
       </section>
       <section className='design_images'>
         {images.map((img) => {
