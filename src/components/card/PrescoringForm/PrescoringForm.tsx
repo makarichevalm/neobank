@@ -18,6 +18,7 @@ const PrescoringForm: FC = () => {
     handleSubmit,
     register,
     watch,
+    setValue,
     formState: { errors, isSubmitted },
   } = useForm<IFormValues>({
     defaultValues: {
@@ -28,16 +29,17 @@ const PrescoringForm: FC = () => {
   const onSubmit = async (data: IFormValues) => {
     setIsLoading(true)
     const correctData: IFormValues = {
-      amount: data.amount,
+      amount: Number(data.amount),
       lastName: data.lastName.trim(),
       firstName: data.firstName.trim(),
       middleName: data.middleName === null ? '' : data.middleName.trim(),
-      term: data.term,
+      term: Number(data.term),
       email: data.email.trim(),
       birthdate: data.birthdate,
       passportSeries: data.passportSeries,
       passportNumber: data.passportNumber,
     }
+    console.log(correctData)
     try {
       await api.prescoringApplication(correctData)
     } catch (error) {
@@ -50,24 +52,24 @@ const PrescoringForm: FC = () => {
     { value: 18, name: '18 month' },
     { value: 24, name: '24 month' },
   ]
+  const getAmount = Number(watch('amount'))
+  const setAmount = (amount: number) => {
+    setValue('amount', amount)
+  }
   return (
     <form className='prescoring' onSubmit={handleSubmit(onSubmit)}>
       <section className='prescoring_header'>
         <div className='prescoring_header_block'>
           <FormHeader value='Customize your card' step={1} />
           <AmountInput
-            {...register('amount', {
-              required: { value: true, message: 'Enter amount' },
-              min: { value: 15000, message: 'Min amount is 15000 ₽' },
-              max: { value: 600000, message: 'Max amount is 600000 ₽' },
-            })}
-            error={errors.amount}
+            {...register('amount')}
             id='amount'
-            type='number'
+            amount={getAmount}
+            handleAmount={setAmount}
             label='Select amount'
-            placeholder='15000'
-            isRequired
-            isSubmitted={isSubmitted}
+            min={15000}
+            max={600000}
+            step={5000}
           />
         </div>
         <div className='prescoring_header_divider'>

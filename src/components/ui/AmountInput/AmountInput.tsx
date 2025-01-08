@@ -1,25 +1,36 @@
 import { FC, InputHTMLAttributes, forwardRef } from 'react'
 import './AmountInput.scss'
 import Label from '../Label/Label'
-import successIcon from '@assets/icons/Check_fill.svg'
-import errorIcon from '@assets/icons/Error_fill.svg'
-import { FieldError } from 'react-hook-form'
 
 type TAmount = InputHTMLAttributes<HTMLInputElement> & {
   label: string
-  isRequired?: boolean
-  isSubmitted?: boolean
-  error?: FieldError | undefined
+  min: number
+  max: number
+  amount: number
+  handleAmount: (amount: number) => void
 }
 const AmountInput: FC<TAmount> = forwardRef<HTMLInputElement, TAmount>(
-  ({ label, isRequired, isSubmitted, error, ...inputProps }, ref) => {
+  ({ label, min, max, amount, handleAmount, ...inputProps }, ref) => {
+    const setAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+      handleAmount(Number(event.target.value))
+    }
     return (
       <div className='amountInput'>
-        <Label isRequired={isRequired} htmlFor={inputProps.name} value={label}>
-          <input className={error ? 'formInput inputError' : 'formInput'} ref={ref} {...inputProps} />
-          {isSubmitted && !error && <img className='icon_success' src={successIcon} />}
-          {error && <img className='icon_error' src={errorIcon} />}
-          {error && <div className='error_message'>{error?.message}</div>}
+        <Label htmlFor={inputProps.name} value={label}>
+          <input type='number' className='amountInput_value' value={amount} onChange={setAmount} />
+          <input
+            className='amountInput_field'
+            style={{ backgroundSize: ((amount - min) * 100) / (max - min) + '% 100%' }}
+            type='range'
+            min={min}
+            max={max}
+            ref={ref}
+            {...inputProps}
+          />
+          <div className='amountInput_limits'>
+            <span>{min}</span>
+            <span>{max}</span>
+          </div>
         </Label>
       </div>
     )
