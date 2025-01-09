@@ -29,3 +29,12 @@ export interface IFormValues {
   passportSeries: string,
   passportNumber: string
 }
+export type TOffer = {
+  requested: number
+  total: number
+  period: number
+  payment: number
+  rate: number
+  insurance: boolean
+  salary: boolean
+}
