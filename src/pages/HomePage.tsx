@@ -20,18 +20,19 @@ const HomePage: FC = () => {
   const refreshTime: number = minutes * seconds * milliseconds
 
   const getNewsData = async () => {
+    let message: string = ''
     let newsData: TNewsItem[] = []
     while (newsData.length < 20) {
       const data = await newsApi.getNews(newsApi.baseURL)
       if (typeof data === 'string') {
-        setNews(data)
+        message = data
         break
       } else {
         let addData = filterValidData(data)
         newsData = [...newsData, ...addData]
       }
     }
-    setNews(newsData)
+    newsData.length < 20 ? setNews(message) : setNews(newsData)
   }
   const filterValidData = (data: TNewsItem[]): TNewsItem[] => {
     return data.filter((newsItem: TNewsItem) => {
