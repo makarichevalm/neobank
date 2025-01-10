@@ -12,7 +12,6 @@ const Support: FC = () => {
     if (emailRef.current?.value) {
       await api.emailSubscribe(emailRef.current?.value)
       setIsSubscribed(true)
-      console.log('okaay')
     }
   }
   const checkSubscribe = () => {
