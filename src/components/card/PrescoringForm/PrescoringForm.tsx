@@ -79,7 +79,7 @@ const PrescoringForm: FC = () => {
         </div>
         <div className='prescoring_header_amount'>
           <p className='prescoring_header_amount-text'>You have chosen the amount</p>
-          <p className='prescoring_header_amount-value'>{watch('amount')} ₽</p>
+          <p className='prescoring_header_amount-value'>{getAmount.toLocaleString('ru-RU')} ₽</p>
           <Divider style='formDivider-solid' />
         </div>
       </section>

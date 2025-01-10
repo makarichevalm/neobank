@@ -17,7 +17,7 @@ const AmountInput: FC<TAmount> = forwardRef<HTMLInputElement, TAmount>(
     return (
       <div className='amountInput'>
         <Label htmlFor={inputProps.name} value={label}>
-          <input type='number' className='amountInput_value' value={amount} onChange={setAmount} />
+          <input className='amountInput_value' value={amount.toLocaleString('ru-RU')} onChange={setAmount} />
           <input
             className='amountInput_field'
             style={{ backgroundSize: ((amount - min) * 100) / (max - min) + '% 100%' }}
@@ -28,8 +28,8 @@ const AmountInput: FC<TAmount> = forwardRef<HTMLInputElement, TAmount>(
             {...inputProps}
           />
           <div className='amountInput_limits'>
-            <span>{min}</span>
-            <span>{max}</span>
+            <span>{min.toLocaleString('ru-RU')}</span>
+            <span>{max.toLocaleString('ru-RU')}</span>
           </div>
         </Label>
       </div>

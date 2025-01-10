@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import Header from '@components/ui/Header/Header'
 import Footer from '@/components/ui/Footer/Footer'
-import Content from '@/components/notfound/Content/Content'
+import NotFound from '@/components/notfound/NotFound'
 
 const NotFoundPage: FC = () => {
   return (
     <div>
       <Header />
-      <Content />
+      <NotFound />
       <Footer />
     </div>
   )
