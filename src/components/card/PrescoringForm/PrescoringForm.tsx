@@ -14,6 +14,7 @@ import Loader from '@/components/ui/Loader/Loader'
 
 const PrescoringForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [errorSubmit, setErrorSubmit] = useState<null | string>(null)
   const {
     handleSubmit,
     register,
@@ -43,7 +44,8 @@ const PrescoringForm: FC = () => {
     try {
       await api.prescoringApplication(correctData)
     } catch (error) {
-      console.log(error)
+      setErrorSubmit('Sorry, there was an internal error. Try sending again later')
+      setIsLoading(false)
     }
   }
   const selectOptions = [
@@ -171,6 +173,7 @@ const PrescoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
         </div>
+        {errorSubmit && <div className='form_error-text'>{errorSubmit}</div>}
         <div className='prescoring_form_btn'>
           {isLoading ? <Loader /> : <Button name='Continue' style='compBtn' type='submit' />}
         </div>

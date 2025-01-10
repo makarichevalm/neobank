@@ -59,3 +59,10 @@
   display: flex;
   justify-content: end;
 }
+.form_error-text{
+  text-align: center;
+  margin-top: 20px;
+  color: #FF5631;
+  @include ubuntu-medium;
+  font-size: 16px;
+}
