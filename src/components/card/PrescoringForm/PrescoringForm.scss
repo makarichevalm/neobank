@@ -55,9 +55,7 @@
   gap: 16px;
 }
 .prescoring_form_btn{
-  margin-top: 24px;
-  display: flex;
-  justify-content: end;
+  @include form-btn;
 }
 .form_error-text{
   text-align: center;

@@ -23,5 +23,11 @@
   font-weight: 700;
   font-style: normal;
 }
+
+@mixin form-btn {
+  margin-top: 24px;
+  display: flex;
+  justify-content: end;
+}
 $button-text-color: #FFFFFF;
 $component-lr-padding: 4vw;

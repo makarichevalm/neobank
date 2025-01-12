@@ -10,5 +10,7 @@
   font-size: 14px;
   padding: 13px 16px;
   box-sizing: border-box;
- 
+  &:focus {
+      outline: 2px solid #5B35D5;
+    }
 }

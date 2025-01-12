@@ -11,6 +11,7 @@ import Select from '@/components/ui/Select/Select'
 import { utils } from '@/utils'
 import { api } from '@/api/api'
 import Loader from '@/components/ui/Loader/Loader'
+import { TERM_OPTIONS } from '@/constants'
 
 const PrescoringForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -24,17 +25,18 @@ const PrescoringForm: FC = () => {
   } = useForm<IFormValues>({
     defaultValues: {
       amount: 15000,
-      term: 6,
+      term: TERM_OPTIONS[0].value,
     },
   })
   const onSubmit = async (data: IFormValues) => {
+    console.log(data)
     setIsLoading(true)
     const correctData: IFormValues = {
       amount: Number(data.amount),
-      lastName: data.lastName.trim(),
-      firstName: data.firstName.trim(),
-      middleName: data.middleName === null ? '' : data.middleName.trim(),
       term: Number(data.term),
+      firstName: data.firstName.trim(),
+      lastName: data.lastName.trim(),
+      middleName: !data.middleName ? null : data.middleName.trim(),
       email: data.email.trim(),
       birthdate: data.birthdate,
       passportSeries: data.passportSeries,
@@ -45,15 +47,13 @@ const PrescoringForm: FC = () => {
       await api.prescoringApplication(correctData)
     } catch (error) {
       setErrorSubmit('Sorry, there was an internal error. Try sending again later')
+    } finally {
       setIsLoading(false)
     }
   }
-  const selectOptions = [
-    { value: 6, name: '6 month' },
-    { value: 12, name: '12 month' },
-    { value: 18, name: '18 month' },
-    { value: 24, name: '24 month' },
-  ]
+  const setTerm = (val: number) => {
+    setValue('term', val)
+  }
   const getAmount = Number(watch('amount'))
   const setAmount = (amount: number) => {
     setValue('amount', amount)
@@ -89,6 +89,7 @@ const PrescoringForm: FC = () => {
           <Input
             {...register('lastName', {
               required: { value: true, message: 'Enter your last name' },
+              pattern: { value: /^[A-Z]/, message: 'The first must start with a capital letter' },
             })}
             error={errors.lastName}
             id='lastName'
@@ -98,7 +99,10 @@ const PrescoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('firstName', { required: { value: true, message: 'Enter your first name' } })}
+            {...register('firstName', {
+              required: { value: true, message: 'Enter your first name' },
+              pattern: { value: /^[A-Z]/, message: 'The first name must start with a capital letter' },
+            })}
             error={errors.firstName}
             id='firstName'
             label='Your first name'
@@ -109,12 +113,22 @@ const PrescoringForm: FC = () => {
           <Input
             id='middleName'
             label='Your patronymic'
-            {...register('middleName')}
+            {...register('middleName', {
+              pattern: { value: /^[A-Z]/, message: 'The patronymic must start with a capital letter' },
+            })}
             error={errors.middleName}
             placeholder='For Example Victorovich'
             isSubmitted={isSubmitted}
           />
-          <Select id='term' name='term' label='Select term' options={selectOptions} register={register} isRequired />
+          <Select
+            id='term'
+            label='Select term'
+            options={TERM_OPTIONS}
+            {...register('term')}
+            defaultValue={TERM_OPTIONS[0].value}
+            onChange={setTerm}
+            isRequired
+          />
           <Input
             id='email'
             type='email'
@@ -149,6 +163,7 @@ const PrescoringForm: FC = () => {
               required: { value: true, message: 'Enter your passport series' },
               minLength: { value: 4, message: 'The series must be 4 digits' },
               maxLength: { value: 4, message: 'The series must be 4 digits' },
+              min: { value: 0, message: 'The series cannot be negative' },
             })}
             error={errors.passportSeries}
             type='number'
@@ -163,6 +178,7 @@ const PrescoringForm: FC = () => {
               required: { value: true, message: 'Enter your passport number' },
               minLength: { value: 6, message: 'The number must be 6 digits' },
               maxLength: { value: 6, message: 'The number must be 6 digits' },
+              min: { value: 0, message: 'The number cannot be negative' },
             })}
             error={errors.passportNumber}
             id='passportNumber'

@@ -18,6 +18,11 @@ export type TAccordionItem = {
   title: string
   content: string
 }
+export type TSelectOption<T> = {
+  value: T
+  name: string
+}
+// types of PrescoringForm
 export interface IFormValues {
   amount: number,
   term: number,
@@ -37,4 +42,22 @@ export type TOffer = {
   rate: number
   insurance: boolean
   salary: boolean
+}
+//types of ScoringForm
+export type TGender = 'MALE' | 'FAMALE'
+export type TMaritalStatus = 'MARRIED' | 'DIVORCED' | 'SINGLE' | 'WIDOW_WIDOWER'
+export type TEmpStatus = 'UNEMPLOYED' | 'SELF_EMPLOYED' | 'EMPLOYED' | 'BUSINESS_OWNER'
+export type TPosition = 'WORKER' | 'MID_MANAGER' | 'TOP_MANAGER' | 'OWNER'
+export interface IScoringValues {
+  gender: TGender,
+  maritalStatus: TMaritalStatus,
+  dependentAmount: number,
+  passportIssueDate: string,
+  passportIssueBranch: string,
+  employmentStatus: TEmpStatus,
+  employerINN: number,
+  salary: number,
+  position: TPosition,
+  workExperienceTotal: number,
+  workExperienceCurrent: number,
 }
