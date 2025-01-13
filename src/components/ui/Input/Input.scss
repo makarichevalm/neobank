@@ -14,16 +14,9 @@
   font-size: 14px;
   padding: 13px 16px;
   box-sizing: border-box;
-
 }
 .inputError{
   outline: 2px solid #FF5631;
-}
-.error_message{
-  color: #FF5631;
-  @include ubuntu-medium;
-  font-size: 16px;
-  margin-top: 2px;
 }
 .img_error, .img_success{
   position: absolute;

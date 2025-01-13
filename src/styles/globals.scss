@@ -29,5 +29,11 @@
   display: flex;
   justify-content: end;
 }
+.field_error-message {
+  color: #FF5631;
+  @include ubuntu-medium;
+  font-size: 16px;
+  margin-top: 2px;
+}
 $button-text-color: #FFFFFF;
 $component-lr-padding: 4vw;

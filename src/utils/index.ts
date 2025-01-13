@@ -8,6 +8,14 @@ const validateFormDate = (birth: string) => {
   if(birthDate > dateOf18) return 'You are under 18 years old'
   return true
 }
+const validateIssueDate = (date: string) => {
+  let today = new Date()
+  let dateArr = date.split('-')
+  let dateIssue = new Date(Number(dateArr[0]), Number(dateArr[1])-1, Number(dateArr[2]))
+  if(dateIssue > today)  return 'Incorrect date of passport issue date'
+  return true
+}
 export const utils = {
-  validateFormDate
+  validateFormDate,
+  validateIssueDate
 }

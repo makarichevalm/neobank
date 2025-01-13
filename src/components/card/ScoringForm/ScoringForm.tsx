@@ -7,6 +7,7 @@ import Input from '@/components/ui/Input/Input'
 import Select from '@/components/ui/Select/Select'
 import { DEPENDENT_OPTIONS, EMPLOYMENT_OPTIONS, GENDER_OPTIONS, MARITAL_OPTIONS, POSITION_OPTIONS } from '@/constants'
 import Button from '@/components/ui/Button/Button'
+import { utils } from '@/utils'
 
 const ScoringForm: FC = () => {
   const {
@@ -31,7 +32,10 @@ const ScoringForm: FC = () => {
           id='gender'
           label="What's your gender"
           options={GENDER_OPTIONS}
-          {...register('gender')}
+          {...register('gender', {
+            required: { value: true, message: 'Select one of the options' },
+          })}
+          error={errors.gender}
           onChange={setValueForm}
           isRequired
           isHidden
@@ -40,7 +44,10 @@ const ScoringForm: FC = () => {
           id='maritalStatus'
           label='Your marital status'
           options={MARITAL_OPTIONS}
-          {...register('maritalStatus')}
+          {...register('maritalStatus', {
+            required: { value: true, message: 'Select one of the options' },
+          })}
+          error={errors.maritalStatus}
           onChange={setValueForm}
           isRequired
           isHidden
@@ -49,15 +56,24 @@ const ScoringForm: FC = () => {
           id='dependentAmount'
           label='Your number of dependents'
           options={DEPENDENT_OPTIONS}
-          {...register('dependentAmount')}
+          {...register('dependentAmount', {
+            required: { value: true, message: 'Select one of the options' },
+          })}
+          error={errors.dependentAmount}
           onChange={setValueForm}
           isRequired
           isHidden
         />
         <Input
-          {...register('passportIssueDate')}
+          {...register('passportIssueDate', {
+            required: { value: true, message: 'Enter date of issue' },
+            pattern: {
+              value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
+              message: 'Incorrect date of issue, format: yyyy-mm-dd',
+            },
+            validate: (value) => utils.validateIssueDate(value as string),
+          })}
           error={errors.passportIssueDate}
-          type='number'
           id='passportIssueDate'
           label='Date of issue of the passport'
           placeholder='Select Date and Time'
@@ -65,7 +81,12 @@ const ScoringForm: FC = () => {
           isSubmitted={isSubmitted}
         />
         <Input
-          {...register('passportIssueBranch')}
+          {...register('passportIssueBranch', {
+            required: { value: true, message: 'Enter division code' },
+            minLength: { value: 6, message: 'The code must be 6 digits' },
+            maxLength: { value: 6, message: 'The code must be 6 digits' },
+            min: { value: 0, message: 'The code cannot be negative' },
+          })}
           error={errors.passportIssueBranch}
           type='number'
           id='passportIssueBranch'
@@ -82,13 +103,21 @@ const ScoringForm: FC = () => {
             id='employmentStatus'
             label='Your employment status'
             options={EMPLOYMENT_OPTIONS}
-            {...register('employmentStatus')}
+            {...register('employmentStatus', {
+              required: { value: true, message: 'Select one of the options' },
+            })}
+            error={errors.employmentStatus}
             onChange={setValueForm}
             isRequired
             isHidden
           />
           <Input
-            {...register('employerINN')}
+            {...register('employerINN', {
+              required: { value: true, message: 'Enter employer INN' },
+              minLength: { value: 12, message: 'The INN must be 12 digits' },
+              maxLength: { value: 12, message: 'The INN must be 12 digits' },
+              min: { value: 0, message: 'The INN cannot be negative' },
+            })}
             error={errors.employerINN}
             type='number'
             id='employerINN'
@@ -98,7 +127,10 @@ const ScoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('salary')}
+            {...register('salary', {
+              required: { value: true, message: 'Enter your salary' },
+              min: { value: 0, message: 'The salary cannot be negative' },
+            })}
             error={errors.salary}
             type='number'
             id='salary'
@@ -111,13 +143,20 @@ const ScoringForm: FC = () => {
             id='position'
             label='Your position'
             options={POSITION_OPTIONS}
-            {...register('position')}
+            {...register('position', {
+              required: { value: true, message: 'Select one of the options' },
+            })}
+            error={errors.position}
             onChange={setValueForm}
             isRequired
             isHidden
           />
           <Input
-            {...register('workExperienceTotal')}
+            {...register('workExperienceTotal', {
+              required: { value: true, message: 'Enter your work experience total' },
+              maxLength: { value: 2, message: 'Your work experience cannot have more than 2 digits' },
+              min: { value: 0, message: 'The experience cannot be negative' },
+            })}
             error={errors.workExperienceTotal}
             type='number'
             id='workExperienceTotal'
@@ -127,7 +166,11 @@ const ScoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('workExperienceCurrent')}
+            {...register('workExperienceCurrent', {
+              required: { value: true, message: 'Enter your work experience current' },
+              maxLength: { value: 2, message: 'Your work experience cannot have more than 2 digits' },
+              min: { value: 0, message: 'The experience cannot be negative' },
+            })}
             error={errors.workExperienceCurrent}
             type='number'
             id='workExperienceCurrent'
