@@ -23,7 +23,7 @@ export type TSelectOption<T> = {
   name: string
 }
 // types of PrescoringForm
-export interface IFormValues {
+export interface IPrescoringValues {
   amount: number,
   term: number,
   firstName: string,
@@ -34,15 +34,18 @@ export interface IFormValues {
   passportSeries: string,
   passportNumber: string
 }
-export type TOffer = {
-  requested: number
-  total: number
-  period: number
-  payment: number
+export interface IOfferCard {
+  applicationId: number
+  requestedAmount: number
+  totalAmount: number
+  term: number
+  monthlyPayment: number
   rate: number
-  insurance: boolean
-  salary: boolean
+  isInsuranceEnabled: boolean
+  isSalaryClient: boolean
 }
+export type TOffers = IOfferCard[]
+
 //types of ScoringForm
 export type TGender = 'MALE' | 'FAMALE'
 export type TMaritalStatus = 'MARRIED' | 'DIVORCED' | 'SINGLE' | 'WIDOW_WIDOWER'

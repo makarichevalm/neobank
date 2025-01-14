@@ -1,4 +1,4 @@
-import { TEmpStatus, TGender, TMaritalStatus, TOffer, TPosition, TSelectOption } from "@/types"
+import { TEmpStatus, TGender, TMaritalStatus, TPosition, TSelectOption } from "@/types"
 
 export const TERM_OPTIONS:TSelectOption<number>[] = [
     { value: 6, name: '6 month' },
@@ -6,12 +6,6 @@ export const TERM_OPTIONS:TSelectOption<number>[] = [
     { value: 18, name: '18 month' },
     { value: 24, name: '24 month' },
   ]
-export const OFFERS: TOffer[] = [
-  { requested: 200000, total: 200000, period: 24, payment: 9697, rate: 15, insurance: false, salary: false },
-  { requested: 200000, total: 200000, period: 24, payment: 9788, rate: 11, insurance: true, salary: false },
-  { requested: 200000, total: 200000, period: 24, payment: 9603, rate: 14, insurance: false, salary: true },
-  { requested: 200000, total: 200000, period: 24, payment: 9690, rate: 10, insurance: true, salary: true },
-]
 export enum StatusCodes {
   OK = 200,
   SERVER_ERROR = 500,

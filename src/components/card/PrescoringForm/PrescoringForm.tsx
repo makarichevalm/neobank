@@ -5,13 +5,15 @@ import Button from '@/components/ui/Button/Button'
 import Input from '@/components/ui/Input/Input'
 import AmountInput from '@/components/ui/AmountInput/AmountInput'
 import Divider from '@/components/ui/Divider/Divider'
-import { IFormValues } from '@/types'
+import { IPrescoringValues } from '@/types'
 import FormHeader from '@/components/ui/FormHeader/FormHeader'
 import Select from '@/components/ui/Select/Select'
 import { utils } from '@/utils'
 import { api } from '@/api/api'
 import Loader from '@/components/ui/Loader/Loader'
 import { TERM_OPTIONS } from '@/constants'
+import { useAppDispatch } from '@/hooks'
+import { setOffers } from '@/store/loanOffersSlice'
 
 const PrescoringForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,16 +24,18 @@ const PrescoringForm: FC = () => {
     watch,
     setValue,
     formState: { errors, isSubmitted },
-  } = useForm<IFormValues>({
+  } = useForm<IPrescoringValues>({
     defaultValues: {
       amount: 15000,
       term: TERM_OPTIONS[0].value,
     },
   })
-  const onSubmit = async (data: IFormValues) => {
+  const dispatch = useAppDispatch()
+  const onSubmit = async (data: IPrescoringValues) => {
     console.log(data)
     setIsLoading(true)
-    const correctData: IFormValues = {
+    setErrorSubmit(null)
+    const correctData: IPrescoringValues = {
       amount: Number(data.amount),
       term: Number(data.term),
       firstName: data.firstName.trim(),
@@ -44,7 +48,8 @@ const PrescoringForm: FC = () => {
     }
     console.log(correctData)
     try {
-      await api.prescoringApplication(correctData)
+      const response = await api.prescoringApplication(correctData)
+      dispatch(setOffers(response))
     } catch (error) {
       setErrorSubmit('Sorry, there was an internal error. Try sending again later')
     } finally {

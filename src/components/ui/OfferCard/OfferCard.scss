@@ -1,11 +1,4 @@
 @use '@styles/globals' as *;
-.offerCards{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px $component-lr-padding 96px $component-lr-padding;
-}
 .offerCard{
   display: flex;
   flex-direction: column;
@@ -38,11 +31,6 @@
   }
 }
 @media (max-width: 1270px){
-  .offerCards{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
   .offerCard{
     width: 100%;
     display: flex;
@@ -57,9 +45,6 @@
   }
 }
 @media (max-width: 640px){
-  .offerCards{
-    gap: 20px;
-  }
   .offerCard{
     display: flex;
     flex-direction: column;

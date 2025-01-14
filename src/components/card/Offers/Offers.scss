@@ -1,0 +1,21 @@
+@use '@styles/globals' as *;
+
+.offers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px $component-lr-padding 96px $component-lr-padding;
+}
+@media (max-width: 1270px) {
+  .offers {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+@media (max-width: 640px) {
+  .offers {
+    gap: 20px;
+  }
+}

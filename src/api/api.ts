@@ -1,4 +1,4 @@
-import { IFormValues } from "@/types";
+import { IPrescoringValues } from "@/types";
 import axios from "axios";
 import { StatusCodes } from '@/constants';
 
@@ -13,11 +13,11 @@ const emailSubscribe = async (email: string) => {
       console.log(error)
     }
 }
-const prescoringApplication = async (data: IFormValues) => {
+const prescoringApplication = async (data: IPrescoringValues) => {
     try {
         const response = await axios.post(`${BASE_URL}/application`, data)
         if(response.status === StatusCodes.OK) {
-            console.log(response.data);
+            return response.data
         }
     } catch (error) {
         console.log(error)
