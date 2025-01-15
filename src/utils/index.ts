@@ -1,3 +1,5 @@
+import { TOffers } from "@/types"
+
 const validateFormDate = (birth: string) => {
   let today = new Date()
   let birthArr = birth.split('-')
@@ -15,7 +17,16 @@ const validateIssueDate = (date: string) => {
   if(dateIssue > today)  return 'Incorrect date of passport issue date'
   return true
 }
+const sortOffersByRates = (offers: TOffers) => {
+    if(offers){
+      let sortOffers = [...offers]
+      sortOffers.sort((x, y) => x.rate - y.rate);
+      return sortOffers
+    }
+    return offers
+}
 export const utils = {
   validateFormDate,
-  validateIssueDate
+  validateIssueDate,
+  sortOffersByRates
 }

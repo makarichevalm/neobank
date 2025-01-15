@@ -16,7 +16,7 @@
   background-color: #003CFF;
   border: none;
   border-radius: 8px;
-  width: 145px;
+  min-width: 150px;
   padding: 16px;
   @include ubuntu-bold;
   font-size: 16px;

@@ -5,8 +5,9 @@ import Button from '@components/ui/Button/Button'
 import Tooltip from '@/components/ui/Tooltip/Tooltip'
 type TPlatinumCard = {
   onClick: () => void
+  text: string
 }
-const PlatinumCard: FC<TPlatinumCard> = ({ onClick }) => {
+const PlatinumCard: FC<TPlatinumCard> = ({ onClick, text }) => {
   return (
     <article className='platinum'>
       <section className='platinum_cond'>
@@ -35,7 +36,7 @@ const PlatinumCard: FC<TPlatinumCard> = ({ onClick }) => {
             </div>
           </Tooltip>
         </div>
-        <Button name='Apply for card' style='compBtn' onClick={onClick} />
+        <Button name={text} style='compBtn' onClick={onClick} />
       </section>
       <section className='platinum_img'>
         <figure>

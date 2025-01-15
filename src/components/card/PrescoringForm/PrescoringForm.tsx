@@ -13,7 +13,7 @@ import { api } from '@/api/api'
 import Loader from '@/components/ui/Loader/Loader'
 import { TERM_OPTIONS } from '@/constants'
 import { useAppDispatch } from '@/hooks'
-import { setOffers } from '@/store/loanOffersSlice'
+import { setBtnText, setLoanStep, setOffers } from '@/store/loanOffersSlice'
 
 const PrescoringForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -32,7 +32,6 @@ const PrescoringForm: FC = () => {
   })
   const dispatch = useAppDispatch()
   const onSubmit = async (data: IPrescoringValues) => {
-    console.log(data)
     setIsLoading(true)
     setErrorSubmit(null)
     const correctData: IPrescoringValues = {
@@ -50,6 +49,8 @@ const PrescoringForm: FC = () => {
     try {
       const response = await api.prescoringApplication(correctData)
       dispatch(setOffers(response))
+      dispatch(setBtnText('Choose an offer'))
+      dispatch(setLoanStep(2))
     } catch (error) {
       setErrorSubmit('Sorry, there was an internal error. Try sending again later')
     } finally {
