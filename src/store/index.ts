@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import loanReducer from './loanOffersSlice'
+import appReducer from './applicationSlice'
 
 const rootReducer = combineReducers({
-  loan: loanReducer,
+  loan: appReducer,
 })
 const persistConfig = {
   key: 'root',

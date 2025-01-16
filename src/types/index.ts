@@ -5,7 +5,7 @@ export type TNewsItem = {
   description: string | null
 }
 export type TCurrencies = {
-  id:number
+  id: number
   name: string
   value: number
 }
@@ -24,14 +24,14 @@ export type TSelectOption<T> = {
 }
 // types of PrescoringForm
 export interface IPrescoringValues {
-  amount: number,
-  term: number,
-  firstName: string,
-  lastName: string,
-  middleName: string | null,
-  email: string,
-  birthdate: string | Date,
-  passportSeries: string,
+  amount: number
+  term: number
+  firstName: string
+  lastName: string
+  middleName: string | null
+  email: string
+  birthdate: string | Date
+  passportSeries: string
   passportNumber: string
 }
 export interface IOfferCard {
@@ -52,15 +52,18 @@ export type TMaritalStatus = 'MARRIED' | 'DIVORCED' | 'SINGLE' | 'WIDOW_WIDOWER'
 export type TEmpStatus = 'UNEMPLOYED' | 'SELF_EMPLOYED' | 'EMPLOYED' | 'BUSINESS_OWNER'
 export type TPosition = 'WORKER' | 'MID_MANAGER' | 'TOP_MANAGER' | 'OWNER'
 export interface IScoringValues {
-  gender: TGender,
-  maritalStatus: TMaritalStatus,
-  dependentAmount: number,
-  passportIssueDate: string,
-  passportIssueBranch: string,
-  employmentStatus: TEmpStatus,
-  employerINN: number,
-  salary: number,
-  position: TPosition,
-  workExperienceTotal: number,
-  workExperienceCurrent: number,
+  gender: TGender
+  maritalStatus: TMaritalStatus
+  dependentAmount: number
+  passportIssueDate: string
+  passportIssueBranch: string
+  employment: {
+    employmentStatus: TEmpStatus
+    employerINN: number
+    salary: number
+    position: TPosition
+    workExperienceTotal: number
+    workExperienceCurrent: number
+  }
+  account: string
 }

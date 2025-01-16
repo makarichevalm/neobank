@@ -5,19 +5,18 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { IOfferCard, TOffers } from '@/types'
 import { utils } from '@/utils'
 import { api } from '@/api/api'
-import { setBtnText, setLoanStep } from '@/store/loanOffersSlice'
+import { setBtnText, setAppStep, setApplicationId } from '@/store/applicationSlice'
 
 const Offers: FC = () => {
   const offers: TOffers = useAppSelector((state) => state.loan.offers)
   const dispatch = useAppDispatch()
   let sortOffers = utils.sortOffersByRates(offers)
   const onChooseOffer = async (offer: IOfferCard) => {
-    console.log(offer)
     try {
-      const response = await api.chooseOffer(offer)
+      await api.chooseOffer(offer)
       dispatch(setBtnText('Continue registration'))
-      dispatch(setLoanStep(3))
-      console.log(response)
+      dispatch(setAppStep(3))
+      dispatch(setApplicationId(offer.applicationId))
     } catch (error) {
       console.log(error)
     }

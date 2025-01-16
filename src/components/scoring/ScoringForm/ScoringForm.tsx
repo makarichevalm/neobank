@@ -8,6 +8,9 @@ import Select from '@/components/ui/Select/Select'
 import { DEPENDENT_OPTIONS, EMPLOYMENT_OPTIONS, GENDER_OPTIONS, MARITAL_OPTIONS, POSITION_OPTIONS } from '@/constants'
 import Button from '@/components/ui/Button/Button'
 import { utils } from '@/utils'
+import { api } from '@/api/api'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { setAppStep } from '@/store/applicationSlice'
 
 const ScoringForm: FC = () => {
   const {
@@ -15,9 +18,17 @@ const ScoringForm: FC = () => {
     register,
     setValue,
     formState: { errors, isSubmitted },
-  } = useForm<IScoringValues>()
+  } = useForm<IScoringValues>({ defaultValues: { account: '11223344556677889900' } })
+  const applicationId = useAppSelector((state) => state.loan.applicationId)
+  const dispatch = useAppDispatch()
   const onSubmit = async (data: IScoringValues) => {
     console.log(data)
+    try {
+      await api.finishRegistration(applicationId as number, data)
+      dispatch(setAppStep(4))
+    } catch (error) {
+      console.log(error)
+    }
   }
   const setValueForm = (val: number, name: any) => {
     setValue(name, val)
@@ -103,22 +114,22 @@ const ScoringForm: FC = () => {
             id='employmentStatus'
             label='Your employment status'
             options={EMPLOYMENT_OPTIONS}
-            {...register('employmentStatus', {
+            {...register('employment.employmentStatus', {
               required: { value: true, message: 'Select one of the options' },
             })}
-            error={errors.employmentStatus}
+            error={errors.employment?.employmentStatus}
             onChange={setValueForm}
             isRequired
             isHidden
           />
           <Input
-            {...register('employerINN', {
+            {...register('employment.employerINN', {
               required: { value: true, message: 'Enter employer INN' },
               minLength: { value: 12, message: 'The INN must be 12 digits' },
               maxLength: { value: 12, message: 'The INN must be 12 digits' },
               min: { value: 0, message: 'The INN cannot be negative' },
             })}
-            error={errors.employerINN}
+            error={errors.employment?.employerINN}
             type='number'
             id='employerINN'
             label='Your employer INN'
@@ -127,11 +138,11 @@ const ScoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('salary', {
+            {...register('employment.salary', {
               required: { value: true, message: 'Enter your salary' },
               min: { value: 0, message: 'The salary cannot be negative' },
             })}
-            error={errors.salary}
+            error={errors.employment?.salary}
             type='number'
             id='salary'
             label='Your salary'
@@ -143,21 +154,21 @@ const ScoringForm: FC = () => {
             id='position'
             label='Your position'
             options={POSITION_OPTIONS}
-            {...register('position', {
+            {...register('employment.position', {
               required: { value: true, message: 'Select one of the options' },
             })}
-            error={errors.position}
+            error={errors.employment?.position}
             onChange={setValueForm}
             isRequired
             isHidden
           />
           <Input
-            {...register('workExperienceTotal', {
+            {...register('employment.workExperienceTotal', {
               required: { value: true, message: 'Enter your work experience total' },
               maxLength: { value: 2, message: 'Your work experience cannot have more than 2 digits' },
               min: { value: 0, message: 'The experience cannot be negative' },
             })}
-            error={errors.workExperienceTotal}
+            error={errors.employment?.workExperienceTotal}
             type='number'
             id='workExperienceTotal'
             label='Your work experience total'
@@ -166,12 +177,12 @@ const ScoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('workExperienceCurrent', {
+            {...register('employment.workExperienceCurrent', {
               required: { value: true, message: 'Enter your work experience current' },
               maxLength: { value: 2, message: 'Your work experience cannot have more than 2 digits' },
               min: { value: 0, message: 'The experience cannot be negative' },
             })}
-            error={errors.workExperienceCurrent}
+            error={errors.employment?.workExperienceCurrent}
             type='number'
             id='workExperienceCurrent'
             label='Your work experience current'

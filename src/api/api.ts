@@ -1,4 +1,4 @@
-import { IOfferCard, IPrescoringValues } from '@/types'
+import { IOfferCard, IPrescoringValues, IScoringValues } from '@/types'
 import axios from 'axios'
 import { StatusCodes } from '@/constants'
 
@@ -35,5 +35,12 @@ const chooseOffer = async (data: IOfferCard) => {
     throw error
   }
 }
-
-export const api = { emailSubscribe, prescoringApplication, chooseOffer }
+const finishRegistration = async (id: number, data: IScoringValues) => {
+  try {
+    await axios.put(`${BASE_URL}/application/registration/${id}`, data)
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+export const api = { emailSubscribe, prescoringApplication, chooseOffer, finishRegistration }

@@ -1,4 +1,5 @@
 import { FC, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '@components/ui/Header/Header'
 import Footer from '@components/ui/Footer/Footer'
 import PlatinumCard from '@components/card/PlatinumCard/PlatinumCard'
@@ -21,7 +22,8 @@ const tabItems = [
 ]
 const CardPage: FC = () => {
   const btnText = useAppSelector((state) => state.loan.btnText)
-  const loanStep = useAppSelector((state) => state.loan.loanStep)
+  const appStep = useAppSelector((state) => state.loan.appStep)
+  const applicationId = useAppSelector((state) => state.loan.applicationId)
   const formRef = useRef<HTMLDivElement>(null)
   const handleScrollToForm = () => {
     if (formRef.current)
@@ -30,7 +32,7 @@ const CardPage: FC = () => {
       })
   }
   const switchLoanStep = () => {
-    switch (loanStep) {
+    switch (appStep) {
       case 1:
         return <PrescoringForm />
       case 2:
@@ -45,10 +47,23 @@ const CardPage: FC = () => {
         )
     }
   }
+  const navigate = useNavigate()
+  const switchApplicationStep = () => {
+    switch (appStep) {
+      case 3:
+        navigate(`/loan/${applicationId}`)
+        break
+      case 4:
+        navigate('')
+    }
+  }
   return (
     <div>
       <Header />
-      <PlatinumCard onClick={handleScrollToForm} text={btnText} />
+      <PlatinumCard
+        onClick={btnText !== 'Continue registration' ? handleScrollToForm : switchApplicationStep}
+        text={btnText}
+      />
       <TabList tabs={tabItems} />
       <GetCard />
       <div ref={formRef}>{switchLoanStep()}</div>

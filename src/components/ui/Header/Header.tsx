@@ -21,7 +21,7 @@ const Header: FC = () => {
         </div>
         <ul className={`header_nav-item ${isMenuOpen && 'active'}`}>
           <li>
-            <NavLink to='/card'>Credit card</NavLink>
+            <NavLink to='/loan'>Credit card</NavLink>
           </li>
           <li>
             <NavLink to='/product'>Product</NavLink>
