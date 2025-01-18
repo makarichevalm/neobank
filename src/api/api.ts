@@ -43,4 +43,29 @@ const finishRegistration = async (id: number, data: IScoringValues) => {
     throw error
   }
 }
-export const api = { emailSubscribe, prescoringApplication, chooseOffer, finishRegistration }
+const getApplicationId = async (id: number) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/admin/application/${id}`)
+    return response.data.status
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+const getPaymentSchedule = async (id: number) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/admin/application/${id}`)
+    return response.data.credit?.paymentSchedule
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+export const api = {
+  emailSubscribe,
+  prescoringApplication,
+  chooseOffer,
+  finishRegistration,
+  getApplicationId,
+  getPaymentSchedule,
+}

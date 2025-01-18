@@ -197,7 +197,7 @@ const PrescoringForm: FC = () => {
         </div>
         {errorSubmit && <div className='form_error-text'>{errorSubmit}</div>}
         <div className='prescoring_form_btn'>
-          {isLoading ? <Loader /> : <Button name='Continue' style='compBtn' type='submit' />}
+          {isLoading ? <Loader /> : <Button name='Continue' style='compBtn btn-form' type='submit' />}
         </div>
       </section>
     </form>

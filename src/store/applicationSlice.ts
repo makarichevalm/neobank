@@ -29,8 +29,14 @@ const applicationSlice = createSlice({
     setOffers: (state, action: PayloadAction<TOffers>) => {
       state.offers = action.payload
     },
+    reset: (state) => {
+      state.btnText = initialState.btnText
+      state.appStep = initialState.appStep
+      state.applicationId = initialState.applicationId
+      state.offers = initialState.offers
+    },
   },
 })
-export const { setBtnText, setAppStep, setApplicationId, setOffers } = applicationSlice.actions
+export const { setBtnText, setAppStep, setApplicationId, setOffers, reset } = applicationSlice.actions
 
 export default applicationSlice.reducer

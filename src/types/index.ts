@@ -67,3 +67,11 @@ export interface IScoringValues {
   }
   account: string
 }
+export type TPayment = {
+  number: number
+  date: string
+  totalPayment: number
+  interestPayment: number
+  debtPayment: number
+  remainingDebt: number
+}

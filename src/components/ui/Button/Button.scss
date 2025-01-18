@@ -5,6 +5,7 @@
   border: none;
   border-radius: 16px;
   padding: 16px;
+  cursor: pointer;
   @include ubuntu-bold;
   font-size: 16px;
   color: $button-text-color;
@@ -16,12 +17,40 @@
   background-color: #003CFF;
   border: none;
   border-radius: 8px;
-  min-width: 150px;
   padding: 16px;
+  max-width: 200px;
+  cursor: pointer;
   @include ubuntu-bold;
   font-size: 16px;
   color: $button-text-color;
   &:hover {
     background-color: #7796C0;
   }
+}
+.compBtnDisabled{
+  @extend .compBtn;
+  cursor: not-allowed;
+  background-color: #7796C0;
+}
+.cancelBtn{
+  background-color: #D93737CC;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    @include ubuntu-bold;
+    font-size: 16px;
+    color: $button-text-color;
+    &:hover {
+      background-color: #cf5c5ccc;
+    }
+}
+.btn-form{
+  width: 150px;
+}
+.btn-table{
+  min-width: 100px;
+}
+.btn-modal{
+  width: 130px;
 }

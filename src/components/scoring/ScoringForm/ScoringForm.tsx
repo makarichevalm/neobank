@@ -10,7 +10,9 @@ import Button from '@/components/ui/Button/Button'
 import { utils } from '@/utils'
 import { api } from '@/api/api'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { setAppStep } from '@/store/applicationSlice'
+import { reset, setAppStep } from '@/store/applicationSlice'
+import { useNavigate } from 'react-router-dom'
+import { persistor } from '@/store'
 
 const ScoringForm: FC = () => {
   const {
@@ -21,10 +23,18 @@ const ScoringForm: FC = () => {
   } = useForm<IScoringValues>({ defaultValues: { account: '11223344556677889900' } })
   const applicationId = useAppSelector((state) => state.loan.applicationId)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const onSubmit = async (data: IScoringValues) => {
-    console.log(data)
     try {
-      await api.finishRegistration(applicationId as number, data)
+      await api.finishRegistration(Number(applicationId), data)
+      const status = await api.getApplicationId(Number(applicationId))
+      setTimeout(() => {
+        if (status === 'CC_DENIED') {
+          persistor.purge()
+          dispatch(reset())
+          navigate('/')
+        }
+      }, 10000)
       dispatch(setAppStep(4))
     } catch (error) {
       console.log(error)
@@ -193,7 +203,7 @@ const ScoringForm: FC = () => {
         </div>
       </section>
       <div className='scoring_btn'>
-        <Button name='Continue' style='compBtn' type='submit' />
+        <Button name='Continue' style='compBtn btn-form' type='submit' />
       </div>
     </form>
   )
