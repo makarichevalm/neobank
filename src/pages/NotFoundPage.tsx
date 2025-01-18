@@ -5,7 +5,7 @@ import NotFound from '@/components/notfound/NotFound'
 
 const NotFoundPage: FC = () => {
   return (
-    <div>
+    <div className='container'>
       <Header />
       <NotFound />
       <Footer />

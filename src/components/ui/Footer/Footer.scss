@@ -5,9 +5,7 @@ $footer-text-color:#2D3748;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  position: relative;
-  width: auto;
-  left:0;
+  margin-top: auto;
   background-color: #E7E7E7;
   padding: 4vw $component-lr-padding;
 }

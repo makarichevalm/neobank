@@ -61,6 +61,22 @@ const getPaymentSchedule = async (id: number) => {
     throw error
   }
 }
+const createDocuments = async (id: number) => {
+  try {
+    await axios.post(`${BASE_URL}/document/${id}`)
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+const signDocuments = async (id: number) => {
+  try {
+    await axios.post(`${BASE_URL}/document/${id}/sign`)
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 export const api = {
   emailSubscribe,
   prescoringApplication,
@@ -68,4 +84,6 @@ export const api = {
   finishRegistration,
   getApplicationId,
   getPaymentSchedule,
+  createDocuments,
+  signDocuments,
 }

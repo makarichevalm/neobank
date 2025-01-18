@@ -56,10 +56,13 @@ const CardPage: FC = () => {
       case 4:
         navigate(`/loan/${applicationId}/document`)
         break
+      case 5:
+        navigate(`/loan/${applicationId}/document/sign`)
+        break
     }
   }
   return (
-    <div>
+    <div className='container'>
       <Header />
       <PlatinumCard
         onClick={btnText !== 'Continue registration' ? handleScrollToForm : switchApplicationStep}

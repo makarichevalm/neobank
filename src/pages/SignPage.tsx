@@ -1,21 +1,21 @@
 import { FC } from 'react'
-import ScoringForm from '@/components/scoring/ScoringForm/ScoringForm'
 import Footer from '@/components/ui/Footer/Footer'
 import Header from '@/components/ui/Header/Header'
+import SignDocument from '@/components/sign/SignDocument'
 import { useAppSelector } from '@/hooks'
 import Message from '@/components/ui/Message/Message'
 
-const ScoringPage: FC = () => {
+const SignPage: FC = () => {
   const appStep = useAppSelector((state) => state.loan.appStep)
-  const switchScoringStep = () => {
+  const switchSignStep = () => {
     switch (appStep) {
-      case 3:
-        return <ScoringForm />
-      case 4:
+      case 5:
+        return <SignDocument />
+      case 6:
         return (
           <Message
-            header='Wait for a decision on the application'
-            desc='The answer will come to your mail within 10 minutes'
+            header='Documents have been successfully signed and sent for approval'
+            desc='Within 10 minutes you will be sent a PIN code to your email for confirmation'
           />
         )
     }
@@ -23,10 +23,10 @@ const ScoringPage: FC = () => {
   return (
     <div className='container'>
       <Header />
-      {switchScoringStep()}
+      {switchSignStep()}
       <Footer />
     </div>
   )
 }
 
-export default ScoringPage
+export default SignPage

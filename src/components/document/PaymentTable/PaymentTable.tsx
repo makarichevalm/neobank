@@ -6,13 +6,15 @@ import Button from '../../ui/Button/Button'
 import Checkbox from '../../ui/Checkbox/Checkbox'
 import Modal from '../Modal/Modal'
 import { api } from '@/api/api'
-import { useAppSelector } from '@/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks'
 import { TPayment } from '@/types'
+import { setAppStep } from '@/store/applicationSlice'
 
 const PaymentTable: FC = () => {
   const [isChecked, setIsChecked] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const applicationId = useAppSelector((state) => state.loan.applicationId)
+  const dispatch = useAppDispatch()
   const [paymentData, setPaymentData] = useState<TPayment[]>([])
   const handleCheckbox = (checked: boolean) => {
     setIsChecked(checked)
@@ -38,6 +40,16 @@ const PaymentTable: FC = () => {
       console.log(error)
     }
   }
+  const sendAgreement = async () => {
+    if (isChecked) {
+      try {
+        await api.createDocuments(Number(applicationId))
+        dispatch(setAppStep(5))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
   useEffect(() => {
     if (applicationId) paymentSchedule(applicationId)
   }, [])
@@ -51,7 +63,11 @@ const PaymentTable: FC = () => {
         <Button name='Deny' style='cancelBtn btn-table' onClick={() => setIsOpenModal(true)} />
         <div className='payment_buttons-send'>
           <Checkbox label='I agree with the payment schedule' isChecked={isChecked} onChange={handleCheckbox} />
-          <Button name='Send' style={isChecked ? 'compBtn btn-table' : 'compBtnDisabled btn-table'} />
+          <Button
+            name='Send'
+            style={isChecked ? 'compBtn btn-table' : 'compBtnDisabled btn-table'}
+            onClick={sendAgreement}
+          />
         </div>
       </section>
       <Modal isOpen={isOpenModal} onClose={handleCloseModal} />
