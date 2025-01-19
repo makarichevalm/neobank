@@ -59,6 +59,9 @@ const CardPage: FC = () => {
       case 5:
         navigate(`/loan/${applicationId}/document/sign`)
         break
+      case 6:
+        navigate(`/loan/${applicationId}/code`)
+        break
     }
   }
   return (

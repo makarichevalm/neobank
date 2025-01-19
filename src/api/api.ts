@@ -77,6 +77,14 @@ const signDocuments = async (id: number) => {
     throw error
   }
 }
+const sendCode = async (id: number, code: string) => {
+  try {
+    await axios.post(`${BASE_URL}/document/${id}/sign/code`, code, { headers: { 'Content-Type': 'application/json' } })
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 export const api = {
   emailSubscribe,
   prescoringApplication,
@@ -86,4 +94,5 @@ export const api = {
   getPaymentSchedule,
   createDocuments,
   signDocuments,
+  sendCode,
 }

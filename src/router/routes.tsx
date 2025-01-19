@@ -5,6 +5,7 @@ import NotFoundPage from '@pages/NotFoundPage'
 import ScoringPage from '@/pages/ScoringPage'
 import DocumentPage from '@/pages/DocumentPage'
 import SignPage from '@/pages/SignPage'
+import CodePage from '@/pages/CodePage'
 
 enum RouteNames {
   HOME = '/',
@@ -15,6 +16,7 @@ enum RouteNames {
   SCORING = CARD + '/:id',
   DOCUMENT = SCORING + '/document',
   SIGN = DOCUMENT + '/sign',
+  CODE = SCORING + '/code',
 }
 
 type TRoutes = {
@@ -32,4 +34,5 @@ export const routes: Array<TRoutes> = [
   { path: RouteNames.SCORING, component: <ScoringPage />, exact: true },
   { path: RouteNames.DOCUMENT, component: <DocumentPage />, exact: true },
   { path: RouteNames.SIGN, component: <SignPage />, exact: true },
+  { path: RouteNames.CODE, component: <CodePage />, exact: true },
 ]
