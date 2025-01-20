@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import './ScoringForm.scss'
 import { IScoringValues } from '@/types'
@@ -13,8 +13,11 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { reset, setAppStep } from '@/store/applicationSlice'
 import { useNavigate } from 'react-router-dom'
 import { persistor } from '@/store'
+import Loader from '@/components/ui/Loader/Loader'
 
 const ScoringForm: FC = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorSubmit, setErrorSubmit] = useState<null | string>(null)
   const {
     handleSubmit,
     register,
@@ -25,6 +28,8 @@ const ScoringForm: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const onSubmit = async (data: IScoringValues) => {
+    setIsLoading(true)
+    setErrorSubmit(null)
     try {
       await api.finishRegistration(Number(applicationId), data)
       const status = await api.getApplicationId(Number(applicationId))
@@ -37,7 +42,9 @@ const ScoringForm: FC = () => {
       }, 10000)
       dispatch(setAppStep(4))
     } catch (error) {
-      console.log(error)
+      setErrorSubmit('Sorry, there was an internal error. Try sending again later')
+    } finally {
+      setIsLoading(false)
     }
   }
   const setValueForm = (val: number, name: any) => {
@@ -202,8 +209,9 @@ const ScoringForm: FC = () => {
           />
         </div>
       </section>
+      {errorSubmit && <div className='form_error-text'>{errorSubmit}</div>}
       <div className='scoring_btn'>
-        <Button name='Continue' style='compBtn btn-form' type='submit' />
+        {isLoading ? <Loader /> : <Button name='Continue' style='compBtn btn-form' type='submit' />}
       </div>
     </form>
   )

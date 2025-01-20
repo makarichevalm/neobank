@@ -28,6 +28,9 @@
     @include ubuntu-medium;
     color: #4A5568;
     font-size: 12px;
+    .btn-sort{
+      cursor: pointer;
+    }
   }
 }
 .table_body{

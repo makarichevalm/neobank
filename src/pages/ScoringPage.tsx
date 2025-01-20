@@ -2,11 +2,12 @@ import { FC } from 'react'
 import ScoringForm from '@/components/scoring/ScoringForm/ScoringForm'
 import Footer from '@/components/ui/Footer/Footer'
 import Header from '@/components/ui/Header/Header'
-import { useAppSelector } from '@/hooks'
+import { useAppSelector, useCheckApplicationId } from '@/hooks'
 import Message from '@/components/ui/Message/Message'
 
 const ScoringPage: FC = () => {
   const appStep = useAppSelector((state) => state.loan.appStep)
+  useCheckApplicationId()
   const switchScoringStep = () => {
     switch (appStep) {
       case 3:

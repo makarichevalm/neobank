@@ -1,16 +1,32 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import './OfferCard.scss'
 import Button from '../Button/Button'
 import offerImg from '@/assets/images/surpriseImage.png'
 import noImg from '@/assets/icons/Error_fill.svg'
 import yesImg from '@/assets/icons/Check_fill.svg'
 import { IOfferCard } from '@/types'
+import Loader from '../Loader/Loader'
+import { api } from '@/api/api'
+import { useAppDispatch } from '@/hooks'
+import { setAppStep, setApplicationId, setBtnText } from '@/store/applicationSlice'
 
 type TOffer = {
   offer: IOfferCard
-  onChoose: (offer: IOfferCard) => void
 }
-const OfferCard: FC<TOffer> = ({ offer, onChoose }) => {
+const OfferCard: FC<TOffer> = ({ offer }) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useAppDispatch()
+  const onChooseOffer = async (offer: IOfferCard) => {
+    try {
+      setIsLoading(true)
+      await api.chooseOffer(offer)
+      dispatch(setBtnText('Continue registration'))
+      dispatch(setAppStep(3))
+      dispatch(setApplicationId(offer.applicationId))
+    } finally {
+      setIsLoading(false)
+    }
+  }
   return (
     <div className='offerCard'>
       <figure className='offerCard_img'>
@@ -31,7 +47,11 @@ const OfferCard: FC<TOffer> = ({ offer, onChoose }) => {
         </p>
       </div>
       <div className='offerCard_btn'>
-        <Button name='Select' style='compBtn' type='submit' onClick={() => onChoose(offer)} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Button name='Select' style='compBtn btn-form' type='submit' onClick={() => onChooseOffer(offer)} />
+        )}
       </div>
     </div>
   )

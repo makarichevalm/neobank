@@ -9,8 +9,10 @@ import { api } from '@/api/api'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { TPayment } from '@/types'
 import { setAppStep } from '@/store/applicationSlice'
+import Loader from '@/components/ui/Loader/Loader'
 
 const PaymentTable: FC = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [isChecked, setIsChecked] = useState(false)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const applicationId = useAppSelector((state) => state.loan.applicationId)
@@ -25,10 +27,10 @@ const PaymentTable: FC = () => {
   const tableHeaders = [
     { id: 'number', name: 'NUMBER' },
     { id: 'date', name: 'DATE' },
-    { id: 'total_payment', name: 'TOTAL PAYMENT' },
-    { id: 'interest_payment', name: 'INTEREST PAYMENT' },
-    { id: 'debt_payment', name: 'DEBT PAYMENT' },
-    { id: 'remaining_debt', name: 'REMAINING DEBT' },
+    { id: 'totalPayment', name: 'TOTAL PAYMENT' },
+    { id: 'interestPayment', name: 'INTEREST PAYMENT' },
+    { id: 'debtPayment', name: 'DEBT PAYMENT' },
+    { id: 'remainingDebt', name: 'REMAINING DEBT' },
   ]
   const paymentSchedule = async (id: number) => {
     try {
@@ -43,10 +45,13 @@ const PaymentTable: FC = () => {
   const sendAgreement = async () => {
     if (isChecked) {
       try {
-        await api.createDocuments(Number(applicationId))
-        dispatch(setAppStep(5))
-      } catch (error) {
-        console.log(error)
+        setIsLoading(true)
+        if (applicationId) {
+          await api.createDocuments(applicationId)
+          dispatch(setAppStep(5))
+        }
+      } finally {
+        setIsLoading(false)
       }
     }
   }
@@ -62,12 +67,18 @@ const PaymentTable: FC = () => {
       <section className='payment_buttons'>
         <Button name='Deny' style='cancelBtn btn-table' onClick={() => setIsOpenModal(true)} />
         <div className='payment_buttons-send'>
-          <Checkbox label='I agree with the payment schedule' isChecked={isChecked} onChange={handleCheckbox} />
-          <Button
-            name='Send'
-            style={isChecked ? 'compBtn btn-table' : 'compBtnDisabled btn-table'}
-            onClick={sendAgreement}
-          />
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <Checkbox label='I agree with the payment schedule' isChecked={isChecked} onChange={handleCheckbox} />
+              <Button
+                name='Send'
+                style={isChecked ? 'compBtn btn-table' : 'compBtnDisabled btn-table'}
+                onClick={sendAgreement}
+              />
+            </>
+          )}
         </div>
       </section>
       <Modal isOpen={isOpenModal} onClose={handleCloseModal} />

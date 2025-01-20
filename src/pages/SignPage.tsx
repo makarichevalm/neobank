@@ -2,11 +2,12 @@ import { FC } from 'react'
 import Footer from '@/components/ui/Footer/Footer'
 import Header from '@/components/ui/Header/Header'
 import SignDocument from '@/components/sign/SignDocument'
-import { useAppSelector } from '@/hooks'
+import { useAppSelector, useCheckApplicationId } from '@/hooks'
 import Message from '@/components/ui/Message/Message'
 
 const SignPage: FC = () => {
   const appStep = useAppSelector((state) => state.loan.appStep)
+  useCheckApplicationId()
   const switchSignStep = () => {
     switch (appStep) {
       case 5:

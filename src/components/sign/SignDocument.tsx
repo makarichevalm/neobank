@@ -8,8 +8,10 @@ import Button from '../ui/Button/Button'
 import { api } from '@/api/api'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { setAppStep } from '@/store/applicationSlice'
+import Loader from '../ui/Loader/Loader'
 const SignDocument: FC = () => {
   const [isChecked, setIsChecked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const handleCheckbox = (checked: boolean) => {
     setIsChecked(checked)
   }
@@ -18,10 +20,11 @@ const SignDocument: FC = () => {
   const handleSign = async () => {
     if (isChecked) {
       try {
+        setIsLoading(true)
         await api.signDocuments(Number(applicationId))
         dispatch(setAppStep(6))
-      } catch (error) {
-        console.log(error)
+      } finally {
+        setIsLoading(false)
       }
     }
   }
@@ -45,8 +48,18 @@ const SignDocument: FC = () => {
         </a>
       </div>
       <div className='sign_send'>
-        <Checkbox label='I agree' isChecked={isChecked} onChange={handleCheckbox} />
-        <Button name='Send' style={isChecked ? 'compBtn btn-form' : 'compBtnDisabled btn-form'} onClick={handleSign} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <Checkbox label='I agree' isChecked={isChecked} onChange={handleCheckbox} />
+            <Button
+              name='Send'
+              style={isChecked ? 'compBtn btn-form' : 'compBtnDisabled btn-form'}
+              onClick={handleSign}
+            />
+          </>
+        )}
       </div>
     </article>
   )

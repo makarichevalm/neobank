@@ -45,7 +45,6 @@ const PrescoringForm: FC = () => {
       passportSeries: data.passportSeries,
       passportNumber: data.passportNumber,
     }
-    console.log(correctData)
     try {
       const response = await api.prescoringApplication(correctData)
       dispatch(setOffers(response))

@@ -1,13 +1,38 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import './Table.scss'
 import sortImg from '@/assets/icons/Arrow_drop_up.svg'
-import { TPayment } from '@/types'
 
 type TTable = {
   headers: { id: string; name: string }[]
-  data: TPayment[]
+  data: { [key: string]: string | number }[]
 }
+type TSortDirection = 'asc' | 'desc'
+type TSortedKey = {
+  keyToSort: string
+  direction: TSortDirection
+}
+
 const Table: FC<TTable> = ({ headers, data }) => {
+  const [sort, setSort] = useState<TSortedKey>({ keyToSort: 'number', direction: 'asc' })
+  const handleHeaderClick = (header: string) => {
+    setSort({
+      keyToSort: header,
+      direction: changeSortDirection(header),
+    })
+  }
+  const changeSortDirection = (header: string) => {
+    if (header === sort.keyToSort) {
+      if (sort.direction === 'asc') return 'desc'
+      return 'asc'
+    }
+    return 'desc'
+  }
+  const sortData = (rows: typeof data) => {
+    if (sort.direction === 'asc') {
+      return rows.sort((a, b) => (a[sort.keyToSort] > b[sort.keyToSort] ? 1 : -1))
+    }
+    return rows.sort((a, b) => (a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1))
+  }
   return (
     <div className='tableContainer'>
       <table className='table'>
@@ -15,23 +40,25 @@ const Table: FC<TTable> = ({ headers, data }) => {
           <tr className='table_header_row'>
             {headers.map((header) => (
               <th key={header.id}>
-                <button className='table_header_row-btn'>
+                <button className='table_header_row-btn' onClick={() => handleHeaderClick(header.id)}>
                   {header.name}
-                  <img src={sortImg} className='' />
+                  <img
+                    src={sortImg}
+                    className={`${
+                      sort.keyToSort === header.id && sort.direction === 'desc' ? 'btn-sort btn-down' : 'btn-sort'
+                    }`}
+                  />
                 </button>
               </th>
             ))}
           </tr>
         </thead>
         <tbody className='table_body'>
-          {data.map((item, index) => (
+          {sortData(data).map((row, index) => (
             <tr className='table_body_row' key={index}>
-              <td>{item.number}</td>
-              <td>{item.date}</td>
-              <td>{item.totalPayment}</td>
-              <td>{item.interestPayment}</td>
-              <td>{item.debtPayment}</td>
-              <td>{item.remainingDebt}</td>
+              {Object.values(row).map((item, itemIndex) => (
+                <td key={itemIndex}>{item}</td>
+              ))}
             </tr>
           ))}
         </tbody>
