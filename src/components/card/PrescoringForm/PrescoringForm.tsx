@@ -5,12 +5,15 @@ import Button from '@/components/ui/Button/Button'
 import Input from '@/components/ui/Input/Input'
 import AmountInput from '@/components/ui/AmountInput/AmountInput'
 import Divider from '@/components/ui/Divider/Divider'
-import { IFormValues } from '@/types'
+import { IPrescoringValues } from '@/types'
 import FormHeader from '@/components/ui/FormHeader/FormHeader'
 import Select from '@/components/ui/Select/Select'
 import { utils } from '@/utils'
 import { api } from '@/api/api'
 import Loader from '@/components/ui/Loader/Loader'
+import { TERM_OPTIONS } from '@/constants'
+import { useAppDispatch } from '@/hooks'
+import { setBtnText, setAppStep, setOffers } from '@/store/applicationSlice'
 
 const PrescoringForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -19,57 +22,61 @@ const PrescoringForm: FC = () => {
     handleSubmit,
     register,
     watch,
+    setValue,
     formState: { errors, isSubmitted },
-  } = useForm<IFormValues>({
+  } = useForm<IPrescoringValues>({
     defaultValues: {
       amount: 15000,
-      term: 6,
+      term: TERM_OPTIONS[0].value,
     },
   })
-  const onSubmit = async (data: IFormValues) => {
+  const dispatch = useAppDispatch()
+  const onSubmit = async (data: IPrescoringValues) => {
     setIsLoading(true)
-    const correctData: IFormValues = {
-      amount: data.amount,
-      lastName: data.lastName.trim(),
+    setErrorSubmit(null)
+    const correctData: IPrescoringValues = {
+      amount: Number(data.amount),
+      term: Number(data.term),
       firstName: data.firstName.trim(),
-      middleName: data.middleName === null ? '' : data.middleName.trim(),
-      term: data.term,
+      lastName: data.lastName.trim(),
+      middleName: !data.middleName ? null : data.middleName.trim(),
       email: data.email.trim(),
       birthdate: data.birthdate,
       passportSeries: data.passportSeries,
       passportNumber: data.passportNumber,
     }
     try {
-      await api.prescoringApplication(correctData)
+      const response = await api.prescoringApplication(correctData)
+      dispatch(setOffers(response))
+      dispatch(setBtnText('Choose an offer'))
+      dispatch(setAppStep(2))
     } catch (error) {
       setErrorSubmit('Sorry, there was an internal error. Try sending again later')
+    } finally {
       setIsLoading(false)
     }
   }
-  const selectOptions = [
-    { value: 6, name: '6 month' },
-    { value: 12, name: '12 month' },
-    { value: 18, name: '18 month' },
-    { value: 24, name: '24 month' },
-  ]
+  const setTerm = (val: number) => {
+    setValue('term', val)
+  }
+  const getAmount = Number(watch('amount'))
+  const setAmount = (amount: number) => {
+    setValue('amount', amount)
+  }
   return (
     <form className='prescoring' onSubmit={handleSubmit(onSubmit)}>
       <section className='prescoring_header'>
         <div className='prescoring_header_block'>
           <FormHeader value='Customize your card' step={1} />
           <AmountInput
-            {...register('amount', {
-              required: { value: true, message: 'Enter amount' },
-              min: { value: 15000, message: 'Min amount is 15000 ₽' },
-              max: { value: 600000, message: 'Max amount is 600000 ₽' },
-            })}
-            error={errors.amount}
+            {...register('amount')}
             id='amount'
-            type='number'
+            amount={getAmount}
+            handleAmount={setAmount}
             label='Select amount'
-            placeholder='15000'
-            isRequired
-            isSubmitted={isSubmitted}
+            min={15000}
+            max={600000}
+            step={5000}
           />
         </div>
         <div className='prescoring_header_divider'>
@@ -77,7 +84,7 @@ const PrescoringForm: FC = () => {
         </div>
         <div className='prescoring_header_amount'>
           <p className='prescoring_header_amount-text'>You have chosen the amount</p>
-          <p className='prescoring_header_amount-value'>{watch('amount')} ₽</p>
+          <p className='prescoring_header_amount-value'>{getAmount.toLocaleString('ru-RU')} ₽</p>
           <Divider style='formDivider-solid' />
         </div>
       </section>
@@ -87,6 +94,7 @@ const PrescoringForm: FC = () => {
           <Input
             {...register('lastName', {
               required: { value: true, message: 'Enter your last name' },
+              pattern: { value: /^[A-Z]/, message: 'The first must start with a capital letter' },
             })}
             error={errors.lastName}
             id='lastName'
@@ -96,7 +104,10 @@ const PrescoringForm: FC = () => {
             isSubmitted={isSubmitted}
           />
           <Input
-            {...register('firstName', { required: { value: true, message: 'Enter your first name' } })}
+            {...register('firstName', {
+              required: { value: true, message: 'Enter your first name' },
+              pattern: { value: /^[A-Z]/, message: 'The first name must start with a capital letter' },
+            })}
             error={errors.firstName}
             id='firstName'
             label='Your first name'
@@ -107,12 +118,22 @@ const PrescoringForm: FC = () => {
           <Input
             id='middleName'
             label='Your patronymic'
-            {...register('middleName')}
+            {...register('middleName', {
+              pattern: { value: /^[A-Z]/, message: 'The patronymic must start with a capital letter' },
+            })}
             error={errors.middleName}
             placeholder='For Example Victorovich'
             isSubmitted={isSubmitted}
           />
-          <Select id='term' name='term' label='Select term' options={selectOptions} register={register} isRequired />
+          <Select
+            id='term'
+            label='Select term'
+            options={TERM_OPTIONS}
+            {...register('term')}
+            defaultValue={TERM_OPTIONS[0].value}
+            onChange={setTerm}
+            isRequired
+          />
           <Input
             id='email'
             type='email'
@@ -147,6 +168,7 @@ const PrescoringForm: FC = () => {
               required: { value: true, message: 'Enter your passport series' },
               minLength: { value: 4, message: 'The series must be 4 digits' },
               maxLength: { value: 4, message: 'The series must be 4 digits' },
+              min: { value: 0, message: 'The series cannot be negative' },
             })}
             error={errors.passportSeries}
             type='number'
@@ -161,6 +183,7 @@ const PrescoringForm: FC = () => {
               required: { value: true, message: 'Enter your passport number' },
               minLength: { value: 6, message: 'The number must be 6 digits' },
               maxLength: { value: 6, message: 'The number must be 6 digits' },
+              min: { value: 0, message: 'The number cannot be negative' },
             })}
             error={errors.passportNumber}
             id='passportNumber'
@@ -173,7 +196,7 @@ const PrescoringForm: FC = () => {
         </div>
         {errorSubmit && <div className='form_error-text'>{errorSubmit}</div>}
         <div className='prescoring_form_btn'>
-          {isLoading ? <Loader /> : <Button name='Continue' style='compBtn' type='submit' />}
+          {isLoading ? <Loader /> : <Button name='Continue' style='compBtn btn-form' type='submit' />}
         </div>
       </section>
     </form>

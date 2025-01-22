@@ -1,0 +1,53 @@
+@use '@styles/globals' as *;
+.code{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 100px $component-lr-padding 96px $component-lr-padding;
+  h2{
+    @include ubuntu-bold;
+    font-size: 30px;
+    color: #1C1C1E;
+    margin-bottom: 32px;
+  }
+  &_number{
+    display: flex;
+    gap: 16px;
+  }
+  div{
+    @include ubuntu-medium;
+    font-size: 16px;
+    color:#FF5631;
+    margin-top: 16px;
+  }
+}
+.code_number-input{
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border: 0.5px solid #808080;
+  border-radius: 8px;
+  padding: 14px;
+  box-sizing: border-box;
+  text-align: center;
+  @include ubuntu-medium;
+  font-size: 20px;
+  &:focus{
+    border: 0.5px solid #3182CE;
+    outline: 0.5px solid #3182CE;
+  }
+  &::placeholder{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #808080;
+    text-align: center;
+    content: "";
+  }
+}

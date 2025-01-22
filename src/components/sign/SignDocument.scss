@@ -1,0 +1,34 @@
+@use '@styles/globals' as *;
+.sign{
+  display: flex;
+  flex-direction: column;
+  margin: 100px $component-lr-padding 96px $component-lr-padding;
+  @include ubuntu-medium;
+  font-size: 20px;
+  &_header{
+    width: 50%;
+  }
+  &_text{
+    color: #4F5665;
+    margin: 32px 0;
+  }
+  &_file{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    &-ref{
+      color:#000000;
+    }
+  }
+  &_send{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 80px;
+  }
+}
+@media(max-width: 980px) {
+  .sign_header {
+    width: 100%;
+  }
+}

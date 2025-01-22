@@ -64,7 +64,7 @@ const HomePage: FC = () => {
     return () => clearInterval(updateCurrencies)
   }, [])
   return (
-    <div>
+    <div className='container'>
       <Header />
       <CardDesign />
       <Features />

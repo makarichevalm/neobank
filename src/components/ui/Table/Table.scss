@@ -1,0 +1,48 @@
+@use '@styles/globals' as *;
+.tableContainer{
+  width: calc(100vw - 2*32px - 2*$component-lr-padding - 20px);
+  margin-top: 10vh;
+  overflow-x: auto;
+}
+.table{
+  width: 100%;
+  min-width: 840px;
+  @include ubuntu-medium;
+  font-size: 12px;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+.table_header{
+  border-bottom: 1px solid #E2E8F0;
+  height: 40px;
+  &_row th{
+    text-align: start;
+    white-space: nowrap;
+  }
+  &_row-btn{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    @include ubuntu-medium;
+    color: #4A5568;
+    font-size: 12px;
+    .btn-sort{
+      cursor: pointer;
+    }
+  }
+}
+.table_body{
+  color: #1A202C;
+  &_row{
+    border-bottom: 1px solid #E2E8F0;
+    height: 40px;
+    td{
+      white-space: nowrap;
+    }
+  }
+}
+.btn-down{
+  transform: rotate(180deg);
+}

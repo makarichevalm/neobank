@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import './Content.scss'
+import './NotFound.scss'
 import errorImg from '@assets/images/404Error.png'
 import Button from '@/components/ui/Button/Button'
 import { useNavigate } from 'react-router-dom'
 
-const Content: FC = () => {
+const NotFound: FC = () => {
   const navigate = useNavigate()
   return (
     <main className='notfound'>
@@ -23,4 +23,4 @@ const Content: FC = () => {
   )
 }
 
-export default Content
+export default NotFound

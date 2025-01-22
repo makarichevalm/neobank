@@ -1,0 +1,13 @@
+@use '@styles/globals' as *;
+.checkbox{
+  display: flex;
+  align-items: center;
+  color: #1A202C;
+  @include ubuntu-regular;
+  font-size: 18px;
+  &_input{
+    width: 20px;
+    height: 20px;
+    margin: 0 1vw;
+  }
+}

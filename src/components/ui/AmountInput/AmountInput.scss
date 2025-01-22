@@ -1,14 +1,56 @@
 @use '@styles/globals' as *;
+$size-thumb: 24px;
+$range-color: #5B35D5;
 .amountInput{
-  position: relative;
-  border: 1px solid #5B35D5;
+  border: 1px solid $range-color;
   border-radius: 10px;
   padding: 24px;
   margin: 32px 0;
+  @include ubuntu-medium;
+  font-size: 16px;   
+  &_value{
+    margin: 10px 0;
+    @include ubuntu-medium;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
+  }
+  &_limits{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #786D6D;
+  }
 }
-.icon_error,
-.icon_success {
-  position: absolute;
-  top: 61px;
-  right: 38px;
+.amountInput_field {
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 2px;
+  cursor: pointer;
+  background: #E2E8F0;
+  background-image: linear-gradient($range-color, $range-color);
+  background-size: 0 0;
+  background-repeat: no-repeat;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: $size-thumb;
+    width: $size-thumb;
+    border-radius: 50%;
+    border: none;
+    background-color: $range-color;
+  }
+  &::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    width: $size-thumb;
+    height: $size-thumb;
+    border-radius: 50%;
+    border: none;
+    background-color: $range-color;
+  }
 }

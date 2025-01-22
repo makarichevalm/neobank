@@ -5,7 +5,7 @@ export type TNewsItem = {
   description: string | null
 }
 export type TCurrencies = {
-  id:number
+  id: number
   name: string
   value: number
 }
@@ -18,14 +18,60 @@ export type TAccordionItem = {
   title: string
   content: string
 }
-export interface IFormValues {
-  amount: number,
-  term: number,
-  firstName: string,
-  lastName: string,
-  middleName: string | null,
-  email: string,
-  birthdate: string | Date,
-  passportSeries: string,
+export type TSelectOption<T> = {
+  value: T
+  name: string
+}
+// types of PrescoringForm
+export interface IPrescoringValues {
+  amount: number
+  term: number
+  firstName: string
+  lastName: string
+  middleName: string | null
+  email: string
+  birthdate: string | Date
+  passportSeries: string
   passportNumber: string
+}
+export interface IOfferCard {
+  applicationId: number
+  requestedAmount: number
+  totalAmount: number
+  term: number
+  monthlyPayment: number
+  rate: number
+  isInsuranceEnabled: boolean
+  isSalaryClient: boolean
+}
+export type TOffers = IOfferCard[]
+
+//types of ScoringForm
+export type TGender = 'MALE' | 'FAMALE'
+export type TMaritalStatus = 'MARRIED' | 'DIVORCED' | 'SINGLE' | 'WIDOW_WIDOWER'
+export type TEmpStatus = 'UNEMPLOYED' | 'SELF_EMPLOYED' | 'EMPLOYED' | 'BUSINESS_OWNER'
+export type TPosition = 'WORKER' | 'MID_MANAGER' | 'TOP_MANAGER' | 'OWNER'
+export interface IScoringValues {
+  gender: TGender
+  maritalStatus: TMaritalStatus
+  dependentAmount: number
+  passportIssueDate: string
+  passportIssueBranch: string
+  employment: {
+    employmentStatus: TEmpStatus
+    employerINN: number
+    salary: number
+    position: TPosition
+    workExperienceTotal: number
+    workExperienceCurrent: number
+  }
+  account: string
+}
+export type TPayment = {
+  number: number
+  date: string
+  totalPayment: number
+  interestPayment: number
+  debtPayment: number
+  remainingDebt: number
 }

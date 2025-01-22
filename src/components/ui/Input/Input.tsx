@@ -19,7 +19,7 @@ const Input: FC<TInputProps> = forwardRef<HTMLInputElement, TInputProps>(
           <input className={error ? 'formInput inputError' : 'formInput'} ref={ref} {...inputProps} />
           {isSubmitted && !error && <img className='img_success' src={successIcon} />}
           {error && <img className='img_error' src={errorIcon} />}
-          {error && <div className='error_message'>{error?.message}</div>}
+          {error && <div className='field_error-message'>{error?.message}</div>}
         </Label>
       </div>
     )

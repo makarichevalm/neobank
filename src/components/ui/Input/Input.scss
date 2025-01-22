@@ -1,6 +1,9 @@
 @use '@styles/globals' as *;
 .formInput_container{
   position: relative;
+  input:focus {
+      outline: 2px solid #5B35D5;
+    }
 }
 .formInput{
   width: 100%;
@@ -11,19 +14,9 @@
   font-size: 14px;
   padding: 13px 16px;
   box-sizing: border-box;
-
 }
 .inputError{
   outline: 2px solid #FF5631;
-}
-input:focus{
-  outline: 2px solid #5B35D5;
-}
-.error_message{
-  color: #FF5631;
-  @include ubuntu-medium;
-  font-size: 16px;
-  margin-top: 2px;
 }
 .img_error, .img_success{
   position: absolute;
