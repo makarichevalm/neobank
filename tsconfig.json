@@ -30,7 +30,7 @@
       "@pages/*": ["src/pages/*"],
     }
   },
-  "include": ["src"],
+  "include": ["src", "./jest.setup.ts"],
   "references": [
     { "path": "./tsconfig.node.json" }
     ]
