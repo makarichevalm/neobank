@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Checkbox from '@/components/ui/Checkbox/Checkbox'
 
-describe('Select component', () => {
+describe('Checkbox component', () => {
   const mockOnChange = jest.fn()
   it('render checkbox with label', () => {
     render(<Checkbox label='Checkbox title' isChecked={false} onChange={mockOnChange} />)
