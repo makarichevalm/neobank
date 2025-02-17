@@ -1,4 +1,27 @@
-# React + TypeScript + Vite
+# Neobank
+The application allows you to issue credit products (credit cards).
+The application consists of a main page and forms for filling out an application for a loan product. The user can make any number of applicationы, but not more than one at a time.
+The main page shows the current exchange rate and the latest news. The loan page contains basic credit card information and an application form.
+
+## Installation
+Use commands:
+1. `git clone https://github.com/makarichevalm/neobank.git -b develop`
+2. `cd neobank`
+3. `npm i`
+
+To start the project, use `npm run dev`
+
+## Dependencies
+-	[Typescript](https://www.typescriptlang.org/)
+-	[React](https://ru.react.js.org/)
+-	[SASS](https://sass-lang.com/)
+-	[axios](https://axios.rest/)
+-	[Redux Toolkit](https://redux-toolkit.js.org/)
+-	[testing-library-react](https://testing-library.com/docs/react-testing-library/intro/)
+
+Full list of dependencies you can find in *package.json*
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -6,45 +29,3 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
